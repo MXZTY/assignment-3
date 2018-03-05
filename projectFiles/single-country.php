@@ -1,5 +1,5 @@
 <?php
-    include_once("config.php");
+    include_once("include/config.inc.php");
     include("general.php");
     
     if(!isset($_GET['country']) ||empty($_GET['country'])) {
