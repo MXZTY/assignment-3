@@ -8,16 +8,10 @@
     $country = $_GET['country'];
     
     try {
-        
+        $countryDB = new CountryGateway($connection);
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $countrySQL = "SELECT CountryName, ISO, Capital, Area, Population, CurrencyName, CountryDescription
-                FROM Countries 
-                WHERE ISO = :country";
-        $countryStmnt = $pdo->prepare($countrySQL);
-        $countryStmnt->bindValue(':country', $country);
-        $countryStmnt->execute();
+
         
         $imageStmnt = $pdo->prepare(getImageSQL('CountryCodeISO'));
         $imageStmnt->bindValue(':filter', $country);
@@ -48,7 +42,7 @@
             <!--Country Details-->
             <section>
             <div>
-                <?php $cRow = $countryStmnt->fetch();?>
+                <?php $cRow = $countryDB->getByKey($country);?>
                 <h1><?php echo $cRow['CountryName'];?></h1>
                 <p>Capital: <b><?php echo $cRow['Capital']?></b> </p>
                 <p>Area: <b><?php echo $cRow['Area']?></b> Sq Km.</p>

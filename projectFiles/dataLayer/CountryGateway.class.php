@@ -1,12 +1,12 @@
 <?php
-    class CountryGateway extends TableDataGateway { 
+    class CountryGateway extends AbstractGateway { 
         public function __construct($connect)    {
                 parent::__construct($connect);
         }
         
         protected function getSelectStatement() {    
             return "SELECT ISO, CountryName,  Capital, CityCode, Area, 
-                        Population, Continent, TopLevelDomain, CurrencyCode, 
+                        Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName,
                         PhoneCountryCode, Languages, Neighbours, CountryDescription
                     FROM Countries";
         }
@@ -16,7 +16,7 @@
             return 'CountryName';
         }
         
-        protected function getPrimaryKeyName() {
+        protected function getKeyField() {
             return "ISO"; 
         }
     } 
