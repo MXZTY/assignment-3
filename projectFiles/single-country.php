@@ -11,7 +11,6 @@
         $countryDB = new CountryGateway($connection);
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         
         $imageStmnt = $pdo->prepare(getImageSQL('CountryCodeISO'));
         $imageStmnt->bindValue(':filter', $country);

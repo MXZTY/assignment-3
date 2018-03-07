@@ -1,21 +1,22 @@
 <?php
-    class PostGateway extends AbstractGateway { 
+    class UserGateway extends AbstractGateway { 
         public function __construct($connect)    {
                 parent::__construct($connect);
         }
         
         protected function getSelectStatement() {    
-            return "SELECT PostID, UserID, MainPostImage, Title, Message, PostTime
-                    FROM Posts";
+            return "SELECT UserID, FirstName, LastName, Address, City, 
+                            Region, Country, Postal, Phone, Email, Privacy
+                    FROM Users";
         }
         
         //This may be unneeded will see
         protected function getOrderFields()    {
-            return 'PostTime';
+            return 'FirstName, LastName';
         }
         
         protected function getKeyField() {
-            return "PostID"; 
+            return "UserID"; 
         }
     } 
 ?>

@@ -123,7 +123,7 @@ try {
               
               <input type="text"  placeholder="Search title" class="form-control" name=title>
               <button type="submit" name="submit" class="btn btn-primary">Filter</button>
-              <?php if($filter != "all"){echo '<button type="submit" name="clear" class="btn btn-success">Clear</button>';}?>
+              <?php if($filterTitle != "All"){echo '<button type="submit" name="clear" class="btn btn-success">Clear</button>';}?>
               </div>
             </form>
 

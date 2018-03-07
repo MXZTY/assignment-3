@@ -1,6 +1,6 @@
 <?php
 /*
-    This is the design patter to allow the abstraction of the other classes.
+    This is the design pattern to allow the abstraction of the other classes.
     Addapted from the lab17 and from the traditional aproach.
 */
     abstract class AbstractGateway {
@@ -47,7 +47,7 @@
         public function getByKey($key) {
             $sql = $this->getSelectStatement(). ' WHERE ' . $this->getKeyField() . ' =:id';
             $statement = DatabaseHelper::runQuery($this->connection, $sql, 
-                    Array(':id' => $key));
+                    Array(':id' => $key)); 
             return $statement->fetch();
         }
     }

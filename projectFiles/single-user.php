@@ -8,22 +8,9 @@
     $id = $_GET['id'];
     
     try {
-        
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $idSQL = "SELECT FirstName, LastName, Address, City, Country, Postal, Phone, Email
-                FROM Users
-                WHERE UserID = :id";
-        $idStmnt = $pdo->prepare($idSQL);
-        $idStmnt->bindValue(':id', $id);
-        $idStmnt->execute();
-    
-        
-        $imageStmnt = $pdo->prepare(getImageSQL('UserID'));
-        $imageStmnt->bindValue(':filter', $id);
-        $imageStmnt->execute();
-
+        $userDB = new UserGateway($connection);
+        $imageDB = new ImageGateway($connection);
+        $images = $imageDB->getUserImages($id);
     }
     catch(PDOException $e) {}
 ?>
@@ -49,23 +36,23 @@
             <!--Country Details-->
             <section>
                 <div>
-                    <?php $cRow = $idStmnt->fetch();?>
-                    <h1><?php echo $cRow['FirstName']; echo " ".$cRow['LastName'];?></h1>
-                    <p><?php echo $cRow['Address']?> </p>
-                    <p><?php echo $cRow['City'] .", " .$cRow['Postal'] .", " . $cRow['Country'];?></p>
-                    <p><?php echo $cRow['Phone']?> </p>
-                    <p><?php echo $cRow['Email']?></p>
+                    <?php $uRow = $userDB->getByKey($id);?>
+                    <h1><?php echo $uRow['FirstName']; echo " ".$uRow['LastName'];?></h1>
+                    <p><?php echo $uRow['Address']?> </p>
+                    <p><?php echo $uRow['City'] .", " .$uRow['Postal'] .", " . $uRow['Country'];?></p>
+                    <p><?php echo $uRow['Phone']?> </p>
+                    <p><?php echo $uRow['Email']?></p>
                 </div>
             </section>
             
             
             <!--Image panel-->
             <div class="panel panel-info">
-                <div class="panel-heading">Images from <?php echo $cRow['CountryName'];?></div>
+                <div class="panel-heading">Images from <?php echo $uRow['FirstName'];?></div>
                 <div class="panel-body">
-                    <?php while($row = $imageStmnt->fetch()){
-                        outputImage($row['Path'], $row['Title'], $row['ImageID']);
-                    } $pdo = null //close connection?>
+                    <?php foreach($images as $row){
+                            outputImage($row['Path'], $row['Title'], $row['ImageID']);
+                    } ?>
                 </div>
             </div>
         </main>
