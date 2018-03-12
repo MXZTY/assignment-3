@@ -18,8 +18,8 @@
         return $Stmnt;
     }
     
-    function outputLink($link, $title) {
-        echo "<a href='$link' class='col-md-3'>$title</a>";
+    function outputLink($link, $title, $class) {
+        echo "<a href='$link' class='$class'>$title</a>";
     }
     
     function outputList($optValue, $optName) {

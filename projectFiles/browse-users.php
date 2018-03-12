@@ -31,7 +31,7 @@
                         //Get all user data and output links to each user
                         $users = $userDB->getAll();
                         foreach($users as $row){
-                            outputLink(('single-user.php?id=' .$row['UserID']), ($row['FirstName'] .' '. $row['LastName']));
+                            outputLink(('single-user.php?id=' .$row['UserID']), ($row['FirstName'] .' '. $row['LastName']), "col-md-3" );
                         }
                     ?>
                 </div>

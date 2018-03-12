@@ -34,7 +34,7 @@
                         //Get all countries with images, display the links to those countries
                         $countries = $countryDB->getCountries();
                         foreach($countries as $row) {
-                            outputLink('single-country.php?country=' . $row['ISO'], $row['CountryName']);
+                            outputLink('single-country.php?country=' . $row['ISO'], $row['CountryName'], 'col-md-3');
                     }?>
                 </div>
 

@@ -1,13 +1,9 @@
 <?php 
-    $continentSQL = "SELECT Continents.ContinentCode, ContinentName
-                         FROM Continents INNER JOIN ImageDetails ON Continents.ContinentCode = ImageDetails.ContinentCode
-                         GROUP BY Continents.ContinentCode";
-    $continentStmnt = executePDO($pdo, $continentSQL);
-        
-    $countrySQL = "SELECT ISO, CountryName
-                   FROM Countries INNER JOIN ImageDetails ON ISO = CountryCodeISO
-                   GROUP BY ISO";
-    $countryStmnt = executePDO($pdo, $countrySQL);
+    try {
+        $continentDB = new ContinentGateway($connection);
+        $countryDB = new CountryGateway($connection);
+    } catch (PDOException $e){
+    }
     
     function outputPanel($label, $value, $page) {
         echo "<a href='browse-images.php?$page=$value'>$label</a>";
@@ -19,7 +15,8 @@
     <div class="panel panel-info">
         <div class="panel-heading">Continents</div>
         <ul class="list-group">
-            <?php while($row = $continentStmnt->fetch()){ ?>
+            <?php $continents = $continentDB->getContinents();
+                  foreach($continents as $row) { ?>
                 <li class="list-group-item">
                     <?php outputPanel($row['ContinentName'], $row['ContinentCode'], "continent"); ?>
                 </li>
@@ -31,12 +28,13 @@
     <div class="panel panel-info">
         <div class="panel-heading">Popular</div>
         <ul class="list-group">
-            <?php while($row = $countryStmnt->fetch()){ ?>
+            <?php $countries = $countryDB->getCountries();
+                  foreach($countries as $row) { ?>
             <li class="list-group-item">
                 <?php outputPanel($row['CountryName'], $row['ISO'], "country"); ?>
             </li>
             <?php }?>
         </ul>
     </div>
-    <!-- end continents panel -->
+    <!-- end countries panel -->
 </aside>
