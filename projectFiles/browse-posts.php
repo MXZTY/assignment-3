@@ -11,9 +11,7 @@
     } catch (PDOException $e){
     }
     
-   function generateLink($url, $label, $class) {
-       echo "<a href='$url'  class='$class'>  $label </a>";
-   }
+
 
 ?>
 <!DOCTYPE html>
@@ -63,9 +61,7 @@
                             <div class='row'>
                                 <div class='col-md-4'>
                                     <?php 
-                                        $image = '<img src="images/medium/' . $row['Path'] . '" alt="' . $row['Title'] . '" class="img-responsive"/>';
-                                        $post = 'post.php?id=' . $row['PostID'];
-                                        generateLink($post, $image, 'none');
+                                        outputMediumImage($row['Path'], $row['Title'], $row['ImageID']);
                                        ?>
                                 </div>  <!-- End Image -->
                                 <div class='col-md-8'>
@@ -75,7 +71,7 @@
                                         <span class='pull-right'> <?php echo $row['PostTime']; ?> </span>
                                         </div> 
                                             <p class='excerpt'> <?php echo $row['Message']; ?> </p> 
-                                            <p class='pull-right'> <?php outputLink($post, 'Read more', 'btn btn-primary btn-sm'); ?> </p> 
+                                            <p class='pull-right'> <?php outputLink("single-post.php", 'Read more', 'btn btn-primary btn-sm'); ?> </p> 
                                 </div> <!-- End Content Pane -->
                             </div>   <!-- /.row --> <hr>
                       <?php  }?>

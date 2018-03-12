@@ -51,7 +51,7 @@
                 <div class="panel-heading">Images from <?php echo $uRow['FirstName'];?></div>
                 <div class="panel-body">
                     <?php foreach($images as $row){
-                            outputImage($row['Path'], $row['Title'], $row['ImageID']);
+                            outputSmallImage($row['Path'], $row['Title'], $row['ImageID']);
                     } ?>
                 </div>
             </div>
