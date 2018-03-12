@@ -18,6 +18,8 @@
         $imageStmnt->bindValue(':id', $id);
         $imageStmnt->execute();
         
+        $imageDB = new ImageGateway($connection);
+        
         
     }
     catch (PDOException $e) {}

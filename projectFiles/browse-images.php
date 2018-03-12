@@ -7,24 +7,18 @@ try {
   $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
-  $continentSQL = "SELECT Continents.ContinentCode, ContinentName FROM Continents INNER JOIN ImageDetails ON Continents.ContinentCode = ImageDetails.ContinentCode GROUP BY Continents.ContinentCode";
-  $contResult = executePDO($pdo, $continentSQL);
+  $continentDB = new ContinentGateway($connection);
   
-  $countrySQL = "SELECT ISO, CountryName
-                 FROM Countries
-                 INNER JOIN ImageDetails ON Countries.ISO = ImageDetails.CountryCodeISO
-                 GROUP BY Countries.ISO";
-  $countryResult = executePDO($pdo, $countrySQL);
+  $countryDB = new CountryGateway($connection);
   
-  $citySQL = "SELECT Cities.CityCode, AsciiName
-              FROM Cities
-              INNER JOIN ImageDetails ON Cities.CityCode = ImageDetails.CityCode
-              GROUP BY Cities.CityCode";
-  $cityResult = executePDO($pdo, $citySQL);
+  $cityDB = new CityGateway($connection);
   
   $imageSQL = "SELECT ImageId, Title, Path FROM ImageDetails";
+  $imageDB = new ImageGateway($connection);
 
   //Check if the page is loading from a submited click that wasn't the clear button 
+  
+  //@TODO Change this completely as we will be using javescript instead. 
   if(!isset($_GET['clear'])) {
     if(!empty($_GET['continent'])) {
         $imageSQL .= " WHERE ContinentCode = :id";
@@ -55,8 +49,6 @@ try {
 
   
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +87,8 @@ try {
               <select name="continent" class="form-control">
                 <option value="0">Select Continent</option>
                 <?php
-                  while($row = $contResult->fetch()){
+                  $continents = $continentDB->getContinents();
+                  foreach($continents as $row) {
                     outputList($row['ContinentCode'], $row['ContinentName']);
                   }
                 ?>
@@ -105,8 +98,9 @@ try {
               <select name="country" class="form-control">
                 <option value="0">Select Country</option>
                 <?php
-                  while($countryRow = $countryResult->fetch()){
-                    outputList($countryRow['ISO'], $countryRow['CountryName']);
+                  $countries = $countryDB->getCountries();
+                  foreach($countries as $row) {
+                    outputList($row['ISO'], $row['CountryName']);
                   }
                 ?>
               </select> <!--End Select Country -->
@@ -115,8 +109,9 @@ try {
               <select name="city" class="form-control">
                 <option value="0">Select City</option>
                 <?php
-                  while($cityRow = $cityResult->fetch()){
-                    outputList($cityRow['CityCode'], $cityRow['AsciiName']);
+                   $cities = $cityDB->getCities();
+                  foreach($cities as $row) {
+                    outputList($row['CityCode'], $row['AsciiName']);
                   }
                 ?>
               </select> <!--End Select City -->
