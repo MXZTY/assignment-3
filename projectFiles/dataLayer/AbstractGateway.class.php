@@ -29,7 +29,8 @@
     
         public function getAll() {
             $sql = $this->getSelectStatement();
-            return DatabaseHelper::runQuery($connection, $sql, null);
+            $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+            return $statement->fetchAll();
         }
         
         /*

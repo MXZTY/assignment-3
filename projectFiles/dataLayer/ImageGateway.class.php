@@ -19,10 +19,8 @@
             return "ImageID"; 
         }
         
-        public function getUserImages($userId) {
-            $sql = "SELECT ImageID, Title, Path
-                     FROM ImageDetails
-                     WHERE UserID = :id";
+        public function getSpecificImages($userId, $specificRow) {
+            $sql = $this->getSelectStatement() . " WHERE $specificRow = :id";
             $statement = DatabaseHelper::runQuery($this->connection, $sql, 
                     Array(':id' => $userId)); 
             return $statement->fetchAll();

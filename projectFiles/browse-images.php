@@ -17,9 +17,9 @@ try {
   $countryResult = executePDO($pdo, $countrySQL);
   
   $citySQL = "SELECT Cities.CityCode, AsciiName
-                 FROM Cities
-                 INNER JOIN ImageDetails ON Cities.CityCode = ImageDetails.CityCode
-                 GROUP BY Cities.CityCode";
+              FROM Cities
+              INNER JOIN ImageDetails ON Cities.CityCode = ImageDetails.CityCode
+              GROUP BY Cities.CityCode";
   $cityResult = executePDO($pdo, $citySQL);
   
   $imageSQL = "SELECT ImageId, Title, Path FROM ImageDetails";
@@ -27,21 +27,21 @@ try {
   //Check if the page is loading from a submited click that wasn't the clear button 
   if(!isset($_GET['clear'])) {
     if(!empty($_GET['continent'])) {
-       $imageSQL .= " WHERE ContinentCode = :id";
-      $filter = $_GET['continent'];
-      $filterTitle = "Continent = $filter";
+        $imageSQL .= " WHERE ContinentCode = :id";
+        $filter = $_GET['continent'];
+        $filterTitle = "Continent = $filter";
     } else if (!empty($_GET['country'])) {
-      $imageSQL .= " WHERE CountryCodeISO = :id";
-      $filter = $_GET['country'];
-      $filterTitle = "Country = $filter";
+        $imageSQL .= " WHERE CountryCodeISO = :id";
+        $filter = $_GET['country'];
+        $filterTitle = "Country = $filter";
     } else if (!empty($_GET['title'])){
-       $imageSQL .= " WHERE Title LIKE :id";
-      $filter = '%'. $_GET['title'] .'%';
-      $filterTitle = "Continent = ". $_GET['title'];
+        $imageSQL .= " WHERE Title LIKE :id";
+        $filter = '%'. $_GET['title'] .'%';
+        $filterTitle = "Continent = ". $_GET['title'];
     } else if (!empty($_GET['city'])) {
-      $imageSQL .= " WHERE CityCode =:id";
-      $filter = $_GET['city'];
-      $filterTitle = "City = $filter";
+        $imageSQL .= " WHERE CityCode =:id";
+        $filter = $_GET['city'];
+        $filterTitle = "City = $filter";
     }
   }
   $imgResult = $pdo->prepare($imageSQL);
@@ -63,7 +63,7 @@ try {
 
 <head>
     <meta charset="utf-8">
-    <title>Assignment 1</title>
+    <title>Assignment 2</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>

@@ -10,7 +10,7 @@
     try {
         $userDB = new UserGateway($connection);
         $imageDB = new ImageGateway($connection);
-        $images = $imageDB->getUserImages($id);
+        $images = $imageDB->getSpecificImages($id, "UserID");
     }
     catch(PDOException $e) {}
 ?>
@@ -18,7 +18,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Assigment 1</title>
+        <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>

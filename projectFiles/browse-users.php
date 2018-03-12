@@ -2,13 +2,7 @@
     include_once("include/config.inc.php");
     include 'general.php';
     try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $sql = "SELECT UserId, FirstName, LastName
-                FROM Users";
-                
-        $statement = executePDO($pdo, $sql);
+        $userDB = new UserGateway($connection);
     }
     catch(PDOException $e) {}
 ?>
@@ -16,7 +10,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Assigment 1</title>
+        <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -33,9 +27,13 @@
             <div class="panel panel-info">
                 <div class="panel-heading">Users</div>
                 <div class="panel-body">
-                    <?php while($row = $statement->fetch()){
-                        outputLink(('single-user.php?id=' .$row['UserId']), ($row['FirstName'] .' '. $row['LastName']));
-                    }?>
+                    <?php 
+                        //Get all user data and output links to each user
+                        $users = $userDB->getAll();
+                        foreach($users as $row){
+                            outputLink(('single-user.php?id=' .$row['UserID']), ($row['FirstName'] .' '. $row['LastName']));
+                        }
+                    ?>
                 </div>
 
             </div>
@@ -50,7 +48,4 @@
 
     </body>
     
-
-        
-
 </html>

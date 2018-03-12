@@ -9,13 +9,9 @@
     
     try {
         $countryDB = new CountryGateway($connection);
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $imageStmnt = $pdo->prepare(getImageSQL('CountryCodeISO'));
-        $imageStmnt->bindValue(':filter', $country);
-        $imageStmnt->execute();
-
+        $imageDB = new ImageGateway($connection);
+        $images = $imageDB->getSpecificImages($country, "CountryCodeISO");
     }
     catch(PDOException $e) {}
 ?>
@@ -23,7 +19,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Assigment 1</title>
+        <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -57,8 +53,8 @@
             <div class="panel panel-info">
                 <div class="panel-heading">Images from <?php echo $cRow['CountryName'];?></div>
                 <div class="panel-body">
-                    <?php while($row = $imageStmnt->fetch()){
-                        outputImage($row['Path'], $row['Title'], $row['ImageID']);
+                    <?php foreach($images as $row){
+                            outputImage($row['Path'], $row['Title'], $row['ImageID']);
                     } ?>
                 </div>
             </div>
@@ -76,4 +72,3 @@
 
         
 
-</html>

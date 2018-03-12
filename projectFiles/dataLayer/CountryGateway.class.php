@@ -5,7 +5,7 @@
         }
         
         protected function getSelectStatement() {    
-            return "SELECT ISO, CountryName,  Capital, CityCode, Area, 
+            return "SELECT ISO, CountryName,  Capital, Countries.CityCode, Area, 
                         Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName,
                         PhoneCountryCode, Languages, Neighbours, CountryDescription
                     FROM Countries";
@@ -18,6 +18,13 @@
         
         protected function getKeyField() {
             return "ISO"; 
+        }
+        
+        public function getCountries(){
+            $sql = $this->getSelectStatement() . " INNER JOIN ImageDetails ON Countries.ISO = ImageDetails.CountryCodeISO 
+                GROUP by Countries.CountryName";
+            $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
+            return $statement->fetchAll();
         }
     } 
 ?>

@@ -3,15 +3,7 @@
     include 'general.php';
     
     try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $sql = "SELECT CountryName, ISO 
-                FROM Countries 
-                INNER JOIN ImageDetails ON Countries.ISO = ImageDetails.CountryCodeISO 
-                GROUP by Countries.CountryName";
-                
-        $statement = executePDO($pdo, $sql);
+        $countryDB = new CountryGateway($connection);
     }
     catch(PDOException $e) {}
     
@@ -21,7 +13,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Assigment 1</title>
+        <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -38,8 +30,11 @@
             <div class="panel panel-info">
                 <div class="panel-heading">Countries with Images</div>
                 <div class="panel-body">
-                    <?php while($row = $statement->fetch()){
-                        outputLink('single-country.php?country=' . $row['ISO'], $row['CountryName']);
+                    <?php
+                        //Get all countries with images, display the links to those countries
+                        $countries = $countryDB->getCountries();
+                        foreach($countries as $row) {
+                            outputLink('single-country.php?country=' . $row['ISO'], $row['CountryName']);
                     }?>
                 </div>
 
