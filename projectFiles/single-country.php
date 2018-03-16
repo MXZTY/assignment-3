@@ -36,7 +36,7 @@
         <main class="container">
             <!--Country Details-->
             <section>
-            <div>
+            <div class="col-md-10">
                 <?php $cRow = $countryDB->getByKey($country);?>
                 <h1><?php echo $cRow['CountryName'];?></h1>
                 <p>Capital: <b><?php echo $cRow['Capital']?></b> </p>
@@ -45,12 +45,14 @@
                 <p>Currence Name: <b><?php echo $cRow['CurrencyName']?></b> </p>
                 <p><?php echo $cRow['CountryDescription']?></p>
                 
+                <?php echo getStaticMap($cRow['CountryName'], $cRow['Area'])?>
+                
             </div>
             </section>
             
             
             <!--Image panel-->
-            <div class="panel panel-info">
+            <div class="panel panel-info col-md-2">
                 <div class="panel-heading">Images from <?php echo $cRow['CountryName'];?></div>
                 <div class="panel-body">
                     <?php foreach($images as $row){
