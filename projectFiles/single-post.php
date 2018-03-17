@@ -5,12 +5,10 @@
     if(!isset($_GET['id']) && empty($_GET['id'])) {
         header("Location: error.php");
     }
+
     $id = $_GET['id'];
-    
     try {
-        $userDB = new UserGateway($connection);
-        $imageDB = new ImageGateway($connection);
-        $images = $imageDB->getSpecificImages($id, "UserID");
+        $postDB = new PostGateway($connection);
     }
     catch(PDOException $e) {}
 ?>
@@ -21,44 +19,54 @@
         <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         
         <script type="text/javascript" language="javascript" src="js/hover.js"></script>
-
     </head>
     
     <body>
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
-            <?php $uRow = $userDB->getByKey($id);?>
+            <?php 
+                $uRow = $postDB->getSinglePostData($id);
+            ?>
             
-              <!--Country Details-->
-            <section >
-                <div class='col-md-8 container-fluid'>
-                    <h1><?php echo $uRow['FirstName']; echo " ".$uRow['LastName'];?></h1>
-                    <p><?php echo $uRow['Address']?> </p>
-                    <p><?php echo $uRow['City'] .", " .$uRow['Postal'] .", " . $uRow['Country'];?></p>
-                    <p><?php echo $uRow['Phone']?> </p>
-                    <p><?php echo $uRow['Email']?></p>
+            <?php 
+                echo '<p class="col-md-7"><br/><br/>';
+                outputMediumImage($uRow['Path'], '', $uRow['ImageID']);
+                echo '</p>';
+            ?>
+
+            
+            <!--Post Details-->
+            <section class='panel col-md-5'>
+                <div>
+                    <h1><?php echo $uRow['Title']; ?></h1>
+                    <p><?php echo $uRow['FirstName'] . " " . $uRow['LastName'];?> </p>
+                    <p><?php echo $uRow['Message']?></p>
                 </div>
             </section>
             
             <!--Image panel-->
-            <div class="panel panel-default container-fluid  col-md-4">
-                <div class="panel-heading user-panel"> Images from <?php echo $uRow['FirstName'];?></div>
+            <div class="panel panel-info col-md-12">
+                <div class="panel-heading">Images from <?php echo $uRow['Title'];?></div>
                 <div class="panel-body">
-                    <?php foreach($images as $row){
-                        outputSmallImage($row['Path'], $row['Title'], $row['ImageID']);
-                    } ?>
-                    </ul>
+                    <?php
+                        $images = $postDB->getRelatedImages($uRow['PostID']);
+                        foreach($images as $image){
+                            outputSmallImage($image['Path'], $image['Title'], $image['ImageID']);
+                        }
+                    ?>
                 </div>
             </div>
             <div id="hover"></div>
+
+            
         </main>
         
         

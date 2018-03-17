@@ -22,15 +22,17 @@
         <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/bootstrap-theme.css" />  
+        <script type="text/javascript" language="javascript" src="js/hover.js"></script>
     </head>
     
     <body>
+        
+        
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
@@ -58,8 +60,11 @@
                     <?php foreach($images as $row){
                             outputSmallImage($row['Path'], $row['Title'], $row['ImageID']);
                     } ?>
+                     
                 </div>
+               
             </div>
+            <div id="hover"></div> 
         </main>
         
         

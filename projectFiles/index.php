@@ -3,11 +3,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Assigment 1</title>
+        <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/bootstrap-theme.css" /> 
@@ -21,7 +21,7 @@
             
             <div>
                 <!--Countries  Card -->
-                <div class=" card">
+                <div class="card">
                     <a href="browse-countries.php">
                         <img src="images/misc/home_countries.jpg" alt="countries"/>
                     </a>

@@ -18,6 +18,9 @@
         return "AIzaSyAfPMkcPoBqKbT4e-rcSXAYsEJZq8Z5F5w";
     }
     
+    function getDynamicAPI(){
+        return "AIzaSyAtxbdPwx0ImeGZJhj_01zVop1EziDV4_w";
+    }
     
     function getStaticMap($country, $size) {
         $zoom = 5;
@@ -43,7 +46,7 @@
     }
     
     function outputSmallImage($path, $alt, $id) {
-        echo generateLink("single-image.php?id=$id", generateImage("square-small", $path, $alt, '') , "col-md-6 list-group");
+        echo generateLink("single-image.php?id=$id", generateImage("square-small", $path, $alt, 'single-image') , "col-md-6 list-group ");
     }
     
     function outputMediumImage($path, $alt, $id) {
