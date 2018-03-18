@@ -70,10 +70,15 @@
                         <script type="text/javascript"> var directions = {lat: <?php echo $image['Latitude'];?>, lng: <?php echo $image['Longitude'];?>};</script>
                             <script type='text/javascript' language="javascript" src='js/map.js'></script>
                             
-                            
+                            <form method="post" action="save-favorite.php" id="form" class="invisible">
+                                <input type="text" name="id" value="<?php echo $id;?>">
+                                <input type="text" name="type" value="image">
+                                <input type="text" name="title" value="<?php echo $image['Description'];?>">
+                                <input type="text" name="path" value="<?php echo $image['Path'];?>">
+                            </form>
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                                <button type="submit" form="form" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>

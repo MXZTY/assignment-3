@@ -41,6 +41,12 @@
                 outputMediumImage($uRow['Path'], '', $uRow['ImageID']);
                 echo '</p>';
             ?>
+            
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="submit" form="form" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                            </div>
+            </div>
 
             
             <!--Post Details-->
@@ -66,6 +72,12 @@
             </div>
             <div id="hover"></div>
 
+             <form method="post" action="save-favorite.php" id="form" class="invisible">
+                                <input type="text" name="id" value="<?php echo $id;?>">
+                                <input type="text" name="type" value="post">
+                                <input type="text" name="title" value="<?php echo $uRow['Title'];?>">
+                                <input type="text" name="path" value="<?php echo $uRow['Path'];?>">
+                            </form>
             
         </main>
         
