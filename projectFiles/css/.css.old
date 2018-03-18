@@ -1,0 +1,63 @@
+/*.topHeaderRow {*/
+/*  height: 3em;*/
+/*  font-size: 0.8em;*/
+/*  padding-top: 1em;*/
+/*}*/
+/*.topHeaderRow  a:link { */
+/*  color: rgb(177, 162, 150);*/
+/*}*/
+/*.topHeaderRow  a:hover { */
+/*  color: rgb(85, 122, 149);*/
+/*}*/
+
+/*.navbar-brand {*/
+/*    font-family: lobster, serif;*/
+/*    font-size: 32px;*/
+/*}*/
+
+/*.description {*/
+/*    margin-top: 8px;*/
+/*   font-size: 20px;   */
+/*}*/
+
+/*.details-list {*/
+/*   list-style-type: none;   */
+/*    padding-left: 0;*/
+/*}*/
+/*.details-list li {*/
+/*    margin: 5px 0 0 0;    */
+/*}*/
+
+/*#tags span.label {*/
+/*   line-height: 26px;   */
+/*}*/
+
+/*.caption {*/
+/*     text-align: center;   */
+/*}*/
+
+/*.portfolio-item {*/
+/*   margin-top: 10px;   */
+/*}*/
+
+/*footer .final {*/
+/*    padding-top: 10px;*/
+/*    margin-top: 10px;*/
+/*    background-color:  rgb(47, 68, 84); */
+/*    text-align: center;*/
+/*}*/
+
+/*footer hr {*/
+/*   margin-bottom: 0;   */
+/*}*/
+
+/*.countryButtons  {*/
+/*    margin-bottom: 10px;*/
+/*}*/
+/*.caption-style-2 .caption {*/
+/*    top: 150px;*/
+/*}*/
+/*.caption-style-2 .caption-text {*/
+/*    width: 150px;*/
+/*    height: 150px;*/
+/*}*/

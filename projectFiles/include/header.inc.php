@@ -3,9 +3,19 @@
             <div class="container">
                 <div class="pull-right">
                     <ul class="list-inline">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+                        <?php 
+                            if(session_id() == '') {
+                                 session_start();
+                            }
+                            if(isset($_SESSION['uname']) && !empty($_SESSION['uname'])){
+                                echo '<li><a href="login.php?state=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+                            } else {
+                                echo '<li><a href="login.php?state=logout"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+
+                            }
+                        ?>
+                        <li><a href="user-profile.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="favorites.php"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,16 +53,15 @@
                         </li>
                     </ul>
 
-
-                    <form class="navbar-form navbar-right" role="search">
+                    <form action="browse-images.php" method='GET' class="navbar-form navbar-right" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input id='title-main' type="text" name="title" class="form-control" placeholder="Search">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-danger" id='title-main-submit'>Submit</button>
                     </form>
                 </div>
                 <!-- /.navbar-collapse -->
-
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
             </div>
             <!-- /.container-fluid -->

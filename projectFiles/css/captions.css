@@ -35,7 +35,7 @@
 
 	.caption-style-2 .caption{
 		cursor: pointer;
-		position: absolute;
+		position: relative;
 		opacity: 0;
 		top:225px;
 		-webkit-transition:all 0.15s ease-in-out;
@@ -48,7 +48,9 @@
 	.caption-style-2 .blur{
 		background-color: rgba(0,0,0,0.7);
 		height: 225px;
-		width: 225px;
+		width: 100%;
+		text-align: center;
+		overflow: visible;
 		z-index: 5;
 		position: absolute;
 	}
