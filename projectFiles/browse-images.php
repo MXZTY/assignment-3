@@ -1,51 +1,27 @@
 <?php
-include_once("include/config.inc.php");
-include("general.php");
-$filter = "";
-$filterTitle = "All";
-try {
-  $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
-  $continentDB = new ContinentGateway($connection);
-  
-  $countryDB = new CountryGateway($connection);
-  
-  $cityDB = new CityGateway($connection);
-  
-  $imageSQL = "SELECT ImageId, Title, Path FROM ImageDetails";
-  $imageDB = new ImageGateway($connection);
 
-  //Check if the page is loading from a submited click that wasn't the clear button 
-  
-  //@TODO Change this completely as we will be using javescript instead. 
-  if(!isset($_GET['clear'])) {
-    if(!empty($_GET['continent'])) {
-        $imageSQL .= " WHERE ContinentCode = :id";
-        $filter = $_GET['continent'];
-        $filterTitle = "Continent = $filter";
-    } else if (!empty($_GET['country'])) {
-        $imageSQL .= " WHERE CountryCodeISO = :id";
-        $filter = $_GET['country'];
-        $filterTitle = "Country = $filter";
-    } else if (!empty($_GET['title'])){
-        $imageSQL .= " WHERE Title LIKE :id";
-        $filter = '%'. $_GET['title'] .'%';
-        $filterTitle = "Continent = ". $_GET['title'];
-    } else if (!empty($_GET['city'])) {
-        $imageSQL .= " WHERE CityCode =:id";
-        $filter = $_GET['city'];
-        $filterTitle = "City = $filter";
+
+    include_once("include/config.inc.php");
+    include("general.php");
+    
+    try{
+        $cityDB = new CityGateway($connection);
+        $continentDB = new ContinentGateway($connection);
+        $countryDB = new CountryGateway($connection);
+        $imageDB = new ImageGateway($connection);
+        $imageResult = $imageDB->getAll();
+    if(!isset($_GET['title']) || empty($_GET['title'])){
+        $_GET['title'] = '';
     }
-  }
-  $imgResult = $pdo->prepare($imageSQL);
-  $imgResult->bindValue(':id', $filter);
-  $imgResult->execute();
-  
-  }
-  catch (PDOException $e){
+      
     }
+    
+    catch (PDOException $e) {}
+    
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,13 +31,13 @@ try {
     <title>Assignment 2</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/captions.css" />
-    <link rel="stylesheet" href="css/bootstrap-theme.css" />    
-
+    <link rel="stylesheet" href="css/assignment-css.css" />
+   <script type="text/javascript" src="js/searchingFunctions.js"></script>
 </head>
 
 <body>
@@ -74,11 +50,11 @@ try {
         <div class="panel panel-default">
           <div class="panel-heading">Filters</div>
           <div class="panel-body">
-            <form action="browse-images.php" method="get" class="form-horizontal">
+            <form action="browse-images.php" method="get" id="searchingForm" class="form-horizontal">
               <div class="form-inline">
                 
                 <!--End Select Continent -->
-              <select name="continent" class="form-control">
+              <select name="continent" class="form-control" id='continent'>
                 <option value="0">Select Continent</option>
                 <?php
                   $continents = $continentDB->getContinents();
@@ -89,7 +65,7 @@ try {
               </select> <!--End Select Continent --> 
               
               <!--End Select Country -->
-              <select name="country" class="form-control">
+              <select name="country" class="form-control" id='country'>
                 <option value="0">Select Country</option>
                 <?php
                   $countries = $countryDB->getCountries();
@@ -100,7 +76,7 @@ try {
               </select> <!--End Select Country -->
               
               <!--Select City -->
-              <select name="city" class="form-control">
+              <select name="city" class="form-control" id='city'>
                 <option value="0">Select City</option>
                 <?php
                    $cities = $cityDB->getCities();
@@ -110,9 +86,7 @@ try {
                 ?>
               </select> <!--End Select City -->
               
-              <input type="text"  placeholder="Search title" class="form-control" name=title>
-              <button type="submit" name="submit" class="btn btn-primary">Filter</button>
-              <?php if($filterTitle != "All"){echo '<button type="submit" name="clear" class="btn btn-success">Clear</button>';}?>
+              <input type="text" placeholder="Search title" class="form-control" name="title" id="title" value=<?php echo"'". $_GET['title']."'"?> >
               </div>
             </form>
 
@@ -121,12 +95,16 @@ try {
                                     
 
       <div class="panel panel-default">
-        <div class="panel-heading">Images [<?php echo $filterTitle;?>]</div>
+        <div class="panel-heading">Images FUNCTION TO GET QUERY HERE!!!!!</div>
         <div class="panel-body">
 		      <ul class="caption-style-2">
-		        <?php while($imgRow = $imgResult->fetch()){ ?>
-		          <li>
-                <a href="single-image.php?id=<?php echo $imgRow["ImageId"];?>" class="img-responsive">
+		        <?php 
+		        
+		        
+		        
+		        foreach($imageResult as $imgRow){ ?>
+		          <li class='filteredImages' title="<?php echo $imgRow["Title"];?>" continent="<?php echo $imgRow["ContinentCode"];?>" country="<?php echo $imgRow["CountryCodeISO"];?>" city="<?php echo $imgRow["CityCode"];?>">
+                <a href="single-image.php?id=<?php echo $imgRow["ImageID"];?>" class="img-responsive">
                 <img src="images/square-medium/<?php echo $imgRow["Path"];?>" alt="<?php echo $imgRow["Title"];?>"></img>
                     <div class="caption">
                        <div class="blur"></div>
@@ -136,8 +114,7 @@ try {
                     </div>
                 </a>
 			     </li>
-			      <?php } //end loop
-			         $pdo=null; //Close connection?>
+			      <?php } //end loop?>
          </ul>       
          </div> <!--End Panel Body -->
       </div> <!--End Panel -->
@@ -145,8 +122,8 @@ try {
     
     <?php include("include/footer.inc.php");?>
 
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 
 </html>

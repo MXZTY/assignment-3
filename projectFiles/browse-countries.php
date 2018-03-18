@@ -20,14 +20,14 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/bootstrap-theme.css" />  
+        <link rel="stylesheet" href="css/assignment-css.css" />  
     </head>
     
     <body>
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
-            <div class="panel panel-info">
+            <div class="panel panel-default">
                 <div class="panel-heading">Countries with Images</div>
                 <div class="panel-body">
                     <?php

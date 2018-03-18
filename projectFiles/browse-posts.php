@@ -22,12 +22,12 @@
     <title>Assignment 2</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/assignment-css.css" />
     <link rel="stylesheet" href="css/captions.css" />
-    <link rel="stylesheet" href="css/bootstrap-theme.css" />    
 </head>
 
 <body>
@@ -56,7 +56,7 @@
 
                    <?php
                         // Fetch all Post data, cycle through it and display
-                        $posts = $postsDB->getAll();
+                        $posts = $postsDB->getAllPostData();
                         foreach($posts as $row) { ?>
                             <div class='row'>
                                 <div class='col-md-4'>
@@ -68,13 +68,13 @@
                                     <h2>  <?php echo $row['Title']; ?></h2>  
                                     <div class='details'> Posted by 
                                         <?php outputLink('single-user.php?id=' . $row['UserID'], $row['FirstName'] . ' ' . $row['LastName'], 'none'); ?>
-                                        <span class='pull-right'> <?php echo $row['PostTime']; ?> </span>
+                                        <span class='pull-right'> <?php echo '<strong>'.date_format(date_create($row['PostTime']), "d-M-Y"). '</strong>' ?> </span>
                                         </div> 
-                                            <p class='excerpt'> <?php echo $row['Message']; ?> </p> 
-                                            <p class='pull-right'> <?php outputLink("single-post.php", 'Read more', 'btn btn-primary btn-sm'); ?> </p> 
+                                            <p> <?php echo substr($row['Message'], 0, 180) . '...'; ?> </p> 
+                                            <p class='pull-right'> <?php outputLink("single-post.php?id=" .$row['PostID'], 'Read more', 'btn btn-primary btn-sm'); ?> </p> 
                                 </div> <!-- End Content Pane -->
                             </div>   <!-- /.row --> <hr>
-                      <?php  }?>
+                        <?php  } //End loop ?>
                                           
                  </div>   <!-- end postlist -->         
                             

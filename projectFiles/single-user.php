@@ -52,6 +52,7 @@
             <div class="panel panel-default container-fluid  col-md-4">
                 <div class="panel-heading user-panel"> Images from <?php echo $uRow['FirstName'];?></div>
                 <div class="panel-body">
+
                     <?php foreach($images as $row){
                         outputSmallImage($row['Path'], $row['Title'], $row['ImageID']);
                     } ?>

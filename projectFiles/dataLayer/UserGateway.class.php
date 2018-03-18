@@ -9,7 +9,6 @@
                             Region, Country, Postal, Phone, Email, Privacy
                     FROM Users";
         }
-        
         //This may be unneeded will see
         protected function getOrderFields()    {
             return 'FirstName, LastName';

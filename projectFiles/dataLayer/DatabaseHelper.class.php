@@ -28,7 +28,6 @@ class DatabaseHelper {
    	    $statement = null;
    	    if (count($parameters) > 0) {
    		    // Use a prepared statement if parameters
-   		    /* do we need to bind parameters here? check the loop i put below there which will bind each param to the index of its position in $parameters.*/
    		    $statement = $connection->prepare($sql);
    		    $executedOk = $statement->execute($parameters);
    		    if (!$executedOk) {
