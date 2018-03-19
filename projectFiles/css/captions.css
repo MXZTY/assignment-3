@@ -1,13 +1,11 @@
-/* css image captions adapted from hasinhayder.github.io */
+ /*css image captions adapted from hasinhayder.github.io */
 
-	.caption-style-2{
+	.caption{
 		list-style-type: none;
 		margin: 0px;
-		padding: 0px;
-		
 	}
 
-	.caption-style-2 li{
+	li{
 		float: left;
 		padding: 0px;
 		position: relative;
