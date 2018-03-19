@@ -4,9 +4,9 @@ function initMap() {
         center: directions,
         zoom: 10
     });
-    // var marker = new google.maps.Marker({
-    //       position: directions,
-    //       map: map
-    // });
+     var marker = new google.maps.Marker({
+           position: directions,
+           map: map
+     });
     
 }
