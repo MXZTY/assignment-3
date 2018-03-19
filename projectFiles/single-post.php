@@ -42,11 +42,7 @@
                 echo '</p>';
             ?>
             
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                            <div class="btn-group" role="group">
-                                <button type="submit" form="form" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                            </div>
-            </div>
+            
 
             
             <!--Post Details-->

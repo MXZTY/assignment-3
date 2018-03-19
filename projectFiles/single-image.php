@@ -55,7 +55,7 @@
                     <div class="col-md-4">                                                
                         <h2><?php echo $image['Title'];?></h2>
 
-                        <div class="panel panel-info">
+                        <div class="panel panel-default">
                             <div class="panel-body">
                                 <ul class="details-list">
                                     <li>By: <a href="single-user.php?id=<?php echo $image['UserId'];?>"> <?php echo $image['FirstName'] ." ". $image['LastName'];?></a></li>
@@ -73,7 +73,7 @@
                             <form method="post" action="save-favorite.php" id="form" class="invisible">
                                 <input type="text" name="id" value="<?php echo $id;?>">
                                 <input type="text" name="type" value="image">
-                                <input type="text" name="title" value="<?php echo $image['Description'];?>">
+                                <input type="text" name="title" value="<?php echo $image['Title'];?>">
                                 <input type="text" name="path" value="<?php echo $image['Path'];?>">
                             </form>
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
