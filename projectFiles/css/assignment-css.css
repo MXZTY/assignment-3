@@ -22,6 +22,11 @@
     display: none;
 }
 
+.visible {
+    display: visible;
+    z-index: 1;
+}
+
 #hover {
     position: absolute;
     top: 0px;

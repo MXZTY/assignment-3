@@ -2,7 +2,7 @@
     include_once("include/config.inc.php");
     include("general.php");
     
-    if(!isset($_GET['id']) && empty($_GET['id'])) {
+    if(!isset($_GET['id']) || empty($_GET['id'])) {
         header("Location: error.php");
     }
     $id = $_GET['id'];
@@ -71,7 +71,4 @@
 
     </body>
     
-
-        
-
 </html>

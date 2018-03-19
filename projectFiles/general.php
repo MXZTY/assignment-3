@@ -1,18 +1,4 @@
 <?php
-
-    function getImageSQL($table){
-        $imageSQL = "SELECT ImageID, Title, Path
-                     FROM ImageDetails
-                     WHERE $table = :filter";
-        return $imageSQL;
-    }
-    
-    function executePDO($pdo, $sql) {
-        $Stmnt = $pdo->prepare($sql);
-        $Stmnt->execute();
-        return $Stmnt;
-    }
-    
     /*Return API key's for Google maps*/
     function getStaticAPI(){
         return "AIzaSyAfPMkcPoBqKbT4e-rcSXAYsEJZq8Z5F5w";
@@ -23,7 +9,7 @@
     }
     
     function getStaticMap($country, $size) {
-        $zoom = 5;
+        $zoom = 4;
         //Format the string for the url, might move this to it's own function if further utility is neeeded
         $country = str_replace(' ', '+', $country);
         //Zoom out for bigger and smaller countries
@@ -66,4 +52,8 @@
         return "<img src='images/$folder/$path' alt='$alt' class='$class'/>";
     }
     
+    /*-----------JavaScript Generator--------------*/
+    function outputFavoritesJavaScript(){
+        echo '<script type="text/javascript" language="javascript" src="js/added.js"></script>';
+    }
 ?>

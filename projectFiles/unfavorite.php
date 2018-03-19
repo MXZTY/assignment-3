@@ -1,4 +1,6 @@
 <?php
+/*This page is initiaded when a user deletes a favorite, first we check if the SESSION is set. If not something went wrong ERROR,
+    otherwise unserialize the SESSION into a favorite. If this was the delete all option call the clearALL on the approperate array.*/
 session_start();
 include("dataLayer/FavoriteList.class.php");
 
@@ -21,7 +23,6 @@ if($_GET['type'] == 'post') {
         $favorites->clearAll('img');
     }
 }
-    
 
 $_SESSION['favorite'] = serialize($favorites);
 

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("include/config.inc.php");
     include("general.php");
     
@@ -13,11 +14,14 @@
     }
     catch (PDOException $e) {}
     
+    /*create a temporary cookie to be used if the user clicks on the favorite button to transfer info to the session page*/
     $favorites = new FavoriteList();
     $favorites->addFavImage($id, $image['Path'], $image['Title']);
     setcookie('temp', serialize($favorites), 0, "/", 'comp3512-assignment2-aarnd649.c9users.io');
     
-    
+    if(isset($_GET['added']) && !empty($_GET['added'])) {
+        outputFavoritesJavaScript();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +36,10 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/assignment-css.css" />
-   
+    
+   <!--Script for the dynamic google map-->
+   <script type="text/javascript"> var directions = {lat: <?php echo $image['Latitude']; ?>, lng: <?php echo $image['Longitude']; ?>};</script>
+                            <script type='text/javascript' language="javascript" src='js/map.js'></script>
 
 </head>
 
@@ -68,11 +75,10 @@
                             </div>
                         </div>
                         
-                        <div id='map'></div>
+                        <div id='map'></div> <!--This div will become the google map-->
                        
-                        <script type="text/javascript"> var directions = {lat: <?php echo $image['Latitude']; ?>, lng: <?php echo $image['Longitude']; ?>};</script>
-                            <script type='text/javascript' language="javascript" src='js/map.js'></script>
-                            
+                        
+                        <!-- Glyph Buttons -->
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
                                 <a href='save-favorite.php?type=image&id=<?php echo $id;?>'><button type='button' class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
@@ -86,7 +92,10 @@
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
                             </div>
-                        </div>
+                        </div><!-- end Glyph button-->
+                        
+                        <!--This div will become the notification for the item being added to favorites-->
+                        <div id="added-notice" class="invisible"></div>
 
                     </div>  <!-- end right-info column -->
                 </div>  <!-- end row -->

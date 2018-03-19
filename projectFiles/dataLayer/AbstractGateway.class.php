@@ -27,6 +27,7 @@
             //Get the order to search for specific searches
             abstract protected function getOrderFields();
     
+    
         public function getAll() {
             $sql = $this->getSelectStatement();
             $statement = DatabaseHelper::runQuery($this->connection, $sql, null);

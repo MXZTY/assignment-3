@@ -1,4 +1,5 @@
 <?php
+    /*An exstenion of the AbstractGateway specified for the Countries table*/
     class CountryGateway extends AbstractGateway { 
         public function __construct($connect)    {
                 parent::__construct($connect);

@@ -1,4 +1,5 @@
 <?php
+/*An exstenion of the Abstract gateway specified for the Continents table*/
     class ContinentGateway extends AbstractGateway { 
         public function __construct($connect)    {
                 parent::__construct($connect);

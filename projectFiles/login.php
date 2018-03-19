@@ -9,15 +9,14 @@
             $_SESSION['id'] = null;
         }    
     }
-    
-    
-
+    /*Check if the user has tried to log in, if they have and it was successful redirect to thier user profile,
+        otherwise redirect log in with an error*/
     try {
         if(isset($_POST['uname']) && !empty($_POST['uname'])){
             $id = $_POST['uname'];
             $psw = $_POST['psw'];
         
-            $loginDB = new UserLoginGateway($connection);
+            $loginDB = new UserGateway($connection);
             $success = $loginDB->login($id, $psw);
             if($success == 'error'){
                 header("Location: login.php?state=error");
@@ -26,9 +25,7 @@
                 $_SESSION['id'] = $success;
                 header("Location: user-profile.php?id=". $success);
             }
-            
         }
-        
     }
     catch(PDOException $e) { echo $e->getMessage();}
 ?>

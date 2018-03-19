@@ -1,4 +1,5 @@
 <?php
+    /*An exstenion of the Abstract gateway specified for the city table*/
     class CityGateway extends AbstractGateway { 
         public function __construct($connect)    {
                 parent::__construct($connect);

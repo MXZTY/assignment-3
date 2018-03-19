@@ -1,9 +1,8 @@
 <?php
-    session_start();
     include_once("include/config.inc.php");
     include("general.php");
     
-    if(!isset($_GET['id']) && empty($_GET['id'])) {
+    if(!isset($_GET['id']) || empty($_GET['id'])) {
         header("Location: error.php");
     }
 
@@ -17,6 +16,10 @@
     $favorites = new FavoriteList();
     $favorites->addFavPost($id, $uRow['Path'], $uRow['Title']);
     setcookie('temp', serialize($favorites), 0, "/", 'comp3512-assignment2-aarnd649.c9users.io');
+    
+    if(isset($_GET['added']) && !empty($_GET['added'])) {
+        outputFavoritesJavaScript();
+    }
 ?>
 
 <html>
@@ -40,20 +43,24 @@
         <main class="container">
             <?php 
                 echo '<p class="col-md-7"><br/><br/>';
-                outputMediumImage($uRow['Path'], '', $uRow['ImageID']);
+                    outputMediumImage($uRow['Path'], '', $uRow['ImageID']);
                 echo '</p>';
             ?>
-            
-            
-
             
             <!--Post Details-->
             <section class='panel col-md-5'>
                 <div>
                     <h1><?php echo $uRow['Title']; ?></h1>
-                    <p><?php echo $uRow['FirstName'] . " " . $uRow['LastName'];?> </p>
+                    <p>By:<a href="single-user.php?id=<?php echo $uRow['UserID']?>"><?php echo ' '.$uRow['FirstName'] . " " . $uRow['LastName'];?></a></p>
                     <p><?php echo $uRow['Message']?></p>
                 </div>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <a href='save-favorite.php?type=post&id=<?php echo $id;?>'><button type='button' class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
+                    </div>
+                </div>
+                <!--This div will become the notification for the item being added to favorites-->
+                <div id="added-notice"></div>
             </section>
             
             <!--Image panel-->

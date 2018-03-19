@@ -2,16 +2,16 @@
     include_once("include/config.inc.php");
     include("general.php");
     
-    if(!isset($_GET['country']) ||empty($_GET['country'])) {
+    if(!isset($_GET['country']) || empty($_GET['country'])) {
         header("Location: error.php");
     }
     $country = $_GET['country'];
     
     try {
         $countryDB = new CountryGateway($connection);
-        
         $imageDB = new ImageGateway($connection);
         $images = $imageDB->getSpecificImages($country, "CountryCodeISO");
+        $cRow = $countryDB->getByKey($country)
     }
     catch(PDOException $e) {}
 ?>
@@ -39,7 +39,6 @@
             <!--Country Details-->
             <section>
             <div class="col-md-8">
-                <?php $cRow = $countryDB->getByKey($country);?>
                 <h1><?php echo $cRow['CountryName'];?></h1>
                 <div class="col-md-6">
                     <p>Capital: <b><?php echo $cRow['Capital']?></b> </p>
@@ -50,14 +49,10 @@
                 </div>
                 <div class="col-md-6">
                     <?php echo getStaticMap($cRow['CountryName'], $cRow['Area'])?>
-</div>
-            
-                
-                
-                
+                </div>
             </div>
             </section>
-            
+            <!--Country Details End-->
             
             <!--Image panel-->
             <div class="panel panel-default col-md-4">

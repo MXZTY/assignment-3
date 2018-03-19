@@ -1,13 +1,12 @@
 <?php
+include('general.php');
+/*This array is used to hold reference data*/
 $links = array(
     "Bootstrap" => "https://getbootstrap.com/",
     "Project on GitHub" => "https://github.com/A-Arndt/comp3512-assignment2",
     "Fundamentals of Web Development textbook" => "http://funwebdev.com/",
     "Bootstrap Customizer" => "http://bootstrap-live-customizer.com",
     "Google Maps (Static and Dynamic)" => "https://developers.google.com");
-function outputLinks($link, $title){
-    echo "<a href='$link' class='gold resourceLink'>$title</a>";
-}
 ?>
 
 <html>
@@ -21,7 +20,6 @@ function outputLinks($link, $title){
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/bootstrap-theme.css" />  
     </head>
     
     <body>
@@ -36,17 +34,15 @@ function outputLinks($link, $title){
                 <div class='panel-body inverse-color'>
                     <h4>External Resources Used</h4>
                     <ul class="resource-list list-group">
-                        <?php foreach($links as $key => $value) { ?>
+                        <?php foreach($links as $title => $link) { ?>
                             <li class="list-group-item">
-                                <?php outputLinks($value, $key); ?>
+                                <?php outputLink($link, $title, 'gold resourceLink'); ?>
                             </li>
                         <?php } ?>
                     </ul>
                 </div>
             </div>
         </main>
-        
-        
         
         <?php include 'include/footer.inc.php'; ?> 
         

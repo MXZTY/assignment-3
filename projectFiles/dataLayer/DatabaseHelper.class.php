@@ -47,29 +47,6 @@ class DatabaseHelper {
     public static function closeConnection($connection) {
         $connection = null;
     }
-    
-    // this is my connect and query function from asg1. i see we prepare the statement above but we arent binding any parameters to the query... 
-    //     function connectAndQuery($sql, $arrayOfVarsUsed){
-    //     try{
-    //         if ($pdo == null){
-    //             $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
-    //             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //         }
-    //         $query = $pdo->prepare($sql);
-    //         $count = 1;
-    //         if($arrayOfVarsUsed != null){
-    //             foreach($arrayOfVarsUsed as $variable){
-    //                 $query->bindParam($count, $variable);
-    //                 $count++;
-    //             }
-    //         }
-    //         $query->execute();
-    //         return $query;
-    //     } catch(PDOException $e) {
-    //         die($e->getMessage());
-    //     }
-    // }
-    
 }
 
 ?>
