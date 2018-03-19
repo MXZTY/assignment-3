@@ -28,8 +28,8 @@
         
         <main class="container">
             <div class="panel panel-default">
-                <div class="panel-heading">Countries with Images</div>
-                <div class="panel-body">
+                <div class="panel-heading"><h4>Countries with Images</h4></div>
+                <div class="panel-body inverse-color">
                     <?php
                         //Get all countries with images, display the links to those countries
                         $countries = $countryDB->getCountries();

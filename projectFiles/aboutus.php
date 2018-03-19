@@ -1,10 +1,12 @@
 <?php
 $links = array(
     "Bootstrap" => "https://getbootstrap.com/",
-    "Project on GitHub" => "https://github.com/rconnolly/comp3512-w2018-assign1.git",
-    "Fundamentals of Web Development textbook" => "http://funwebdev.com/");
+    "Project on GitHub" => "https://github.com/A-Arndt/comp3512-assignment2",
+    "Fundamentals of Web Development textbook" => "http://funwebdev.com/",
+    "Bootstrap Customizer" => "http://bootstrap-live-customizer.com",
+    "Google Maps (Static and Dynamic)" => "https://developers.google.com");
 function outputLinks($link, $title){
-    echo "<a href='$link'>$title</a>";
+    echo "<a href='$link' class='gold resourceLink'>$title</a>";
 }
 ?>
 
@@ -26,15 +28,14 @@ function outputLinks($link, $title){
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
-            <section class="container">
-                <div>
-                    <h2>About Me</h2>
-                    <p>This assignment was created by Maxwell Tyson & Austin Arndt. It was created as the second assignment for COMP 3512.</p>
+            <div class="panel panel-default">
+                <div class='panel-heading'>
+                    <h2>About Us</h2>
+                    <p>This site was created as an assignment by Maxwell Tyson & Austin Arndt. It was the second assignment for COMP 3512 at Mount Royal University taught by Randy Connolly.</p>
                 </div>
-                <hr>
-                <div>
+                <div class='panel-body inverse-color'>
                     <h4>External Resources Used</h4>
-                    <ul class="list-group">
+                    <ul class="resource-list list-group">
                         <?php foreach($links as $key => $value) { ?>
                             <li class="list-group-item">
                                 <?php outputLinks($value, $key); ?>
@@ -42,7 +43,7 @@ function outputLinks($link, $title){
                         <?php } ?>
                     </ul>
                 </div>
-            </section>
+            </div>
         </main>
         
         

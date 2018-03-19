@@ -17,57 +17,47 @@
     <body>
         <?php include 'include/header.inc.php'; ?>
         
-        <main class="container">
-            
-            <div>
+        <main class="container-fluid" style='max-width:70%;'>
+            <h3 class='panel panel-heading center center-text inverse-color'></br> Explore These Options </br> </h3>
+            <div class='col-md-12'>
+                </br>
                 <!--Countries  Card -->
-                <div class="card">
+                <div class="card col-md-4">
                     <a href="browse-countries.php">
-                        <img src="images/misc/home_countries.jpg" alt="countries"/>
+                        <img class='img-circle img-responsive' src="images/misc/home_countries.jpg" alt="countries"/>
                     </a>
-                    <div>
-                        <h3>Countries</h3>
-                        <p>See all countries for which we have Images.</p>
-                    </div>
-                    
-                    <div>
-                        <a href="browse-countries.php">View Countries</a>
-                    </div>
-                </div>
-                
-                <!--Images  Card -->
-                <div class="card">
-                    <a href="browse-images.php">
-                        <img src="images/misc/home_images.jpg" alt="countries"/>
-                    </a>
-                    <div>
-                        <h3>Images</h3>
-                        <p>See all of our travel images.</p>
-                    </div>
-                    <div>
-                        <a href="browse-images.php">View Images</a>
-                    </div>
-                </div>
-                
-                <!--Users  Card -->
-                <div class=" card">
-                    <a href="browse-users.php">
-                        <img src="images/misc/home_users.jpg" alt="countries"/>
-                    </a>
-                    <div>
-                        <h3>Users</h3>
-                        <p>See information about contributing users.</p>
-                    </div>
-                    <div>
-                        <a href="browse-users.php">View Users</a>
+                    <div class='center-text'>
+                        </br>
+                        <a href='browse-countries.php'><button class='btn-lg btn-warning inverse-color'>Countries</button></a>
                     </div>
 
                 </div>
                 
+                <!--Images  Card -->
+                <div class="card col-md-4">
+                    <a href="browse-images.php">
+                        <img class='img-circle img-responsive' src="images/misc/home_images.jpg" alt="images"/>
+                    </a>
+                    <div class='center-text'>
+                        </br>
+                        <a href='browse-images.php'><button class='btn-lg btn-warning inverse-color'>Images</button></a>
+                    </div>
+                </div>
+                
+                <!--Users  Card -->
+                <div class="card col-md-4">
+                    <a href="browse-users.php">
+                        <img class='img-circle img-responsive' src="images/misc/home_users.jpg" alt="users"/>
+                    </a>
+                    <div class='center-text'>
+                        <br>
+                        <a href='browse-users.php'><button class='btn-lg btn-warning inverse-color'>Users</button></a>
+                    </div>
+                </div>
             </div>
         </main>
         
-        
+        </br></br>
         
         <?php include 'include/footer.inc.php'; ?> 
         

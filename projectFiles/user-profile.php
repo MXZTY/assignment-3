@@ -5,10 +5,10 @@
 
     try {
         if(!isset($_SESSION['uname']) || empty($_SESSION['uname'])){
-            header("Location: login.php?state=error");
+            header("Location: login.php");
         }
         if((!isset($_SESSION['id']) || empty($_SESSION['id'] ) && $_SESSION['id'] != $_GET['id'])){
-            header("Location: login.php?state=error");
+            header("Location: login.php");
         }
         $id = $_SESSION['id'];
         $userDB = new UserGateway($connection);

@@ -33,12 +33,12 @@
             $zoom = 7;
         }
            
-        return "<img src=https://maps.googleapis.com/maps/api/staticmap?center=$country&zoom=$zoom&size=400x400&key=".getStaticAPI() .">";
+        return "<img class='img-rounded' src=https://maps.googleapis.com/maps/api/staticmap?center=$country&zoom=$zoom&size=300x300&key=".getStaticAPI() ." >";
     }
     
     /*-----------Ouputing Functions Echo out a disired bit of HTML --------------*/
     function outputLink($link, $title, $class) {
-        echo "<a href='$link' class='$class'>$title</a>";
+        echo "<a href='$link' class='$class gold'>$title</a>";
     }
     
     function outputList($optValue, $optName) {
@@ -46,7 +46,7 @@
     }
     
     function outputSmallImage($path, $alt, $id) {
-        echo generateLink("single-image.php?id=$id", generateImage("square-small", $path, $alt, 'single-image') , "col-md-6 list-group ");
+        echo generateLink("single-image.php?id=$id", generateImage("square-small", $path, $alt, 'single-image') , "col-md-4 list-group ");
     }
     
     function outputMediumImage($path, $alt, $id) {

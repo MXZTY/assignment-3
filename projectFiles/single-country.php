@@ -38,23 +38,29 @@
         <main class="container">
             <!--Country Details-->
             <section>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <?php $cRow = $countryDB->getByKey($country);?>
                 <h1><?php echo $cRow['CountryName'];?></h1>
-                <p>Capital: <b><?php echo $cRow['Capital']?></b> </p>
-                <p>Area: <b><?php echo $cRow['Area']?></b> Sq Km.</p>
-                <p>Population: <b><?php echo $cRow['Population']?></b> </p>
-                <p>Currence Name: <b><?php echo $cRow['CurrencyName']?></b> </p>
-                <p><?php echo $cRow['CountryDescription']?></p>
+                <div class="col-md-6">
+                    <p>Capital: <b><?php echo $cRow['Capital']?></b> </p>
+                    <p>Area: <b><?php echo $cRow['Area']?></b> Sq Km.</p>
+                    <p>Population: <b><?php echo $cRow['Population']?></b> </p>
+                    <p>Currence Name: <b><?php echo $cRow['CurrencyName']?></b> </p>
+                    <p><?php echo $cRow['CountryDescription']?></p>
+                </div>
+                <div class="col-md-6">
+                    <?php echo getStaticMap($cRow['CountryName'], $cRow['Area'])?>
+</div>
+            
                 
-                <?php echo getStaticMap($cRow['CountryName'], $cRow['Area'])?>
+                
                 
             </div>
             </section>
             
             
             <!--Image panel-->
-            <div class="panel panel-info col-md-2">
+            <div class="panel panel-default col-md-4">
                 <div class="panel-heading">Images from <?php echo $cRow['CountryName'];?></div>
                 <div class="panel-body">
                     <?php foreach($images as $row){

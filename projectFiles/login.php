@@ -3,10 +3,14 @@
     include_once("include/config.inc.php");
     include("general.php");
     
-    if($_GET['state'] == 'logout'){
-        $_SESSION['uname'] = null;
-        $_SESSION['id'] = null;
+    if(isset($_GET['state']) || !empty($_GET['state'])){
+        if($_GET['state'] == 'logout'){
+            $_SESSION['uname'] = null;
+            $_SESSION['id'] = null;
+        }    
     }
+    
+    
 
     try {
         if(isset($_POST['uname']) && !empty($_POST['uname'])){
@@ -47,27 +51,28 @@
 
     </head>
     
-    <body>
-        <main class="container-fluid jumbotron loginscreen">
-             <h1>Share Your Travels!</h1>
-        <div class="panel panel-default">
-            <div class='login-image col-md-12'>
+    <body class='container'>
+        <main>
+            <div class="panel-default center-text">
+             <h1 class='panel-heading'>Share Your Travels!</h1>
+        <div class="panel-body center-text loginPanel">
+            <div class='login-image center-text'>
                 </br>
-                <img src='images/misc/travel.jpg' alt='Login to explore!'></br></br>
+                <img class='img-circle img-responsive center' src='images/misc/home_images.jpg' alt='Login to explore!'>
             </div>
-            <h2 class='center-text'>Login:</h4>
+            <h2 class='center-text gold'>Login</h4>
             <form action="login.php" method="POST" id="loginForm" class="form-horizontal">
                  <div class="form-loginForm">
-                    <h4 for="uname" class="center-text"><b>Username: </b></h3>
+                    <h4 for="uname" class="center-text gold">Username: </h3>
                     <input type="text" class='input-lg' placeholder="Enter Username" name="uname" required>
-                    </br>
-                    <h4 for="psw" class="center-text"><b>Password: </b></h3>
+                    <h4 for="psw" class="center-text gold">Password: </h3>
                     <input type="password" class='input-lg' placeholder="Enter Password" name="psw" required></br>
-                    </br>
                     <?php if(isset($_GET['state']) && $_GET['state'] == 'error'){echo '<p style="color:black!important;">Error while logging in!</p>';}?>
-                    <button type="submit" class="btn btn-info">Login</button>
+                    </br>
+                    <button type="submit" class="btn btn-info gold">Login</button>
                 </div>
             </form>
+        </div>
         </div>
     </main>
     

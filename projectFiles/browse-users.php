@@ -24,9 +24,9 @@
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
-            <div class="panel panel-info">
-                <div class="panel-heading">Users</div>
-                <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Users</h4></div>
+                <div class="panel-body inverse-color">
                     <?php 
                         //Get all user data and output links to each user
                         $users = $userDB->getAll();
