@@ -2,7 +2,7 @@
     session_start();
     include("dataLayer/FavoriteList.class.php");
     
-    if(!isset($_POST['type']) || empty($_POST['type']) || !isset($_POST['path']) || empty($_POST['path']) || !isset($_POST['id']) || empty($_POST['id']) || !isset($_POST['title']) || empty($_POST['title'])){
+    if(!isset($_COOKIE['temp'])){
         header("Location: error.php");
     }
 
@@ -11,15 +11,23 @@
     }
     
     $favorites = unserialize($_SESSION['favorite']);
+    $newFav = unserialize($_COOKIE['temp']);
     
-    if($_POST['type'] == 'post') {
-        $favorites->addFavPost($_POST['id'], $_POST['path'], $_POST['title']);
+    if($_GET['type'] == 'post') {
+        $posts = $newFav->getPost();
+        foreach($posts as $key => $value) {
+            $favorites->addFavPost($key, $value[0], $value[1]);
+        }
+        
         $_SESSION['favorite'] = serialize($favorites);
-        header("Location: single-post.php?id=". $_POST['id']);
+        header("Location: single-post.php?id=". $_GET['id']);
     } else {
-        $favorites->addFavImage($_POST['id'], $_POST['path'], $_POST['title']);
+        $images = $newFav->getImage();
+        foreach($images as $key => $value) {
+            $favorites->addFavImage($key, $value[0], $value[1]);
+        }
         $_SESSION['favorite'] = serialize($favorites);
-        header("Location: single-image.php?id=" . $_POST['id']);
+        header("Location: single-image.php?id=" . $_GET['id']);
     }
 
 ?>

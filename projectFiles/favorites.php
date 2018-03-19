@@ -11,8 +11,6 @@
     $images = $favorites->getImage();
     $posts = $favorites->getPost();
     
-    function outputFavorite() {}
-    
 ?>
 
 <html>
@@ -33,15 +31,15 @@
     <body>
         <?php include 'include/header.inc.php'; ?>
         
-        <main class=" container-fluid">
-            
+        <main >
+            <div class="container">
             <h2>Favorites</h2>
               <!--Favorite Posts-->
             <div class="panel panel-default col-md-6">
                 <div class="panel-heading">Favorite Posts <a href="unfavorite.php?type=post"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
                 <div class="panel-body flex-container container-fluid">
                     <?php foreach($posts as $key => $post){ ?>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <?php outputLink("single-post.php?id=$key", generateImage("square-small", $post[0], $post[1], 'img-thumbnail'), ""); ?>
                             
                             <a href="unfavorite.php?type=post&id=<?php echo $key?>" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -61,7 +59,7 @@
                 <div class="panel-heading"> Favorite Images <a href="unfavorite.php?type=img"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
                 <div class="panel-body flex-container container-fluid">
                     <?php foreach($images as $key => $image) { ?>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <?php outputLink("single-image.php?id=$key", generateImage("square-small", $image[0], $image[1], 'img-thumbnail'), ""); ?>
                         
                         <a href="unfavorite.php?type=image&id=<?php echo $key?>" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -70,6 +68,8 @@
                     <?php }?>
                 </div>
             </div>  <!--End of Favorite Images-->
+            
+            </div>
         </main>
         
         

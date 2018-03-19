@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("include/config.inc.php");
     include("general.php");
     
@@ -9,8 +10,13 @@
     $id = $_GET['id'];
     try {
         $postDB = new PostGateway($connection);
+        $uRow = $postDB->getSinglePostData($id);
     }
     catch(PDOException $e) {}
+    
+    $favorites = new FavoriteList();
+    $favorites->addFavPost($id, $uRow['Path'], $uRow['Title']);
+    setcookie('temp', serialize($favorites), 0, "/", 'comp3512-assignment2-aarnd649.c9users.io');
 ?>
 
 <html>
@@ -32,10 +38,6 @@
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
-            <?php 
-                $uRow = $postDB->getSinglePostData($id);
-            ?>
-            
             <?php 
                 echo '<p class="col-md-7"><br/><br/>';
                 outputMediumImage($uRow['Path'], '', $uRow['ImageID']);
@@ -67,13 +69,6 @@
                 </div>
             </div>
             <div id="hover"></div>
-
-             <form method="post" action="save-favorite.php" id="form" class="invisible">
-                                <input type="text" name="id" value="<?php echo $id;?>">
-                                <input type="text" name="type" value="post">
-                                <input type="text" name="title" value="<?php echo $uRow['Title'];?>">
-                                <input type="text" name="path" value="<?php echo $uRow['Path'];?>">
-                            </form>
             
         </main>
         
