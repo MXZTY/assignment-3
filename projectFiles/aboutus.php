@@ -26,7 +26,7 @@ $links = array(
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
-            <div class="panel panel-default">
+            <div class="panel panel-default ">
                 <div class='panel-heading'>
                     <h2>About Us</h2>
                     <p>This site was created as an assignment by Maxwell Tyson & Austin Arndt. It was the second assignment for COMP 3512 at Mount Royal University taught by Randy Connolly.</p>

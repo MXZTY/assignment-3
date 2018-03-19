@@ -11,9 +11,8 @@
         $countryDB = new CountryGateway($connection);
         $imageDB = new ImageGateway($connection);
         $images = $imageDB->getSpecificImages($country, "CountryCodeISO");
-        $cRow = $countryDB->getByKey($country)
-    }
-    catch(PDOException $e) {}
+        $cRow = $countryDB->getByKey($country);
+    } catch(PDOException $e) {}
 ?>
 
 <html>
@@ -55,7 +54,7 @@
             <!--Country Details End-->
             
             <!--Image panel-->
-            <div class="panel panel-default col-md-4">
+            <div class="panel panel-default col-md-4 side-panel center-text">
                 <div class="panel-heading">Images from <?php echo $cRow['CountryName'];?></div>
                 <div class="panel-body">
                     <?php foreach($images as $row){

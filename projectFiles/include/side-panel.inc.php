@@ -12,29 +12,33 @@
 ?>
 
 <aside class="col-md-2">
-    <div class="panel panel-default">
+    <div class="panel panel-default side-panel">
         <div class="panel-heading">Continents</div>
-        <ul class="list-group">
+        <div class='panel-body'>
+        <ul class='list-group'>
             <?php $continents = $continentDB->getContinents();
                   foreach($continents as $row) { ?>
-                <li class="list-group-item">
+                <li class='list-group-item gold'>
                     <?php outputPanel($row['ContinentName'], $row['ContinentCode'], "continent"); ?>
                 </li>
             <?php }?>
         </ul>
+        </div>
     </div>
     <!-- end continents panel -->
 
-    <div class="panel panel-default">
+    <div class="panel panel-default side-panel">
         <div class="panel-heading">Popular</div>
+        <div class='panel-body'>
         <ul class="list-group">
             <?php $countries = $countryDB->getCountries();
                   foreach($countries as $row) { ?>
-            <li class="list-group-item">
+            <li class="list-group-item gold">
                 <?php outputPanel($row['CountryName'], $row['ISO'], "country"); ?>
             </li>
             <?php }?>
         </ul>
+        </div>
     </div>
     <!-- end countries panel -->
 </aside>

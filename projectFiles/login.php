@@ -57,13 +57,13 @@
                 </br>
                 <img class='img-circle img-responsive center' src='images/misc/home_images.jpg' alt='Login to explore!'>
             </div>
-            <h2 class='center-text gold'>Login</h4>
+            <h2 class='center-text gold'>Login</h2>
             <form action="login.php" method="POST" id="loginForm" class="form-horizontal">
-                 <div class="form-loginForm">
-                    <h4 for="uname" class="center-text gold">Username: </h3>
-                    <input type="text" class='input-lg' placeholder="Enter Username" name="uname" required>
-                    <h4 for="psw" class="center-text gold">Password: </h3>
-                    <input type="password" class='input-lg' placeholder="Enter Password" name="psw" required></br>
+                 <div class="form-loginForm center">
+                    <label for="uname" class="center-text gold">Username: </label>
+                    <input type="text" class='input-lg form-input' placeholder="Enter Username" name="uname" required>
+                    <label for="psw" class="center-text gold">Password: </label>
+                    <input type="password" class='input-lg form-input' placeholder="Enter Password" name="psw" required></br>
                     <?php if(isset($_GET['state']) && $_GET['state'] == 'error'){echo '<p style="color:black!important;">Error while logging in!</p>';}?>
                     </br>
                     <button type="submit" class="btn btn-info gold">Login</button>
