@@ -6,7 +6,9 @@ $links = array(
     "Project on GitHub" => "https://github.com/A-Arndt/comp3512-assignment2",
     "Fundamentals of Web Development textbook" => "http://funwebdev.com/",
     "Bootstrap Customizer" => "http://bootstrap-live-customizer.com",
-    "Google Maps (Static and Dynamic)" => "https://developers.google.com");
+    "Google Maps (Static and Dynamic)" => "https://developers.google.com",
+     "Color Scheme #30" => "https://medium.com/envato/49-color-schemes-for-2017-bd9660e4f39d"
+    );
 ?>
 
 <html>
@@ -15,8 +17,7 @@ $links = array(
         <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -26,10 +27,12 @@ $links = array(
         <?php include 'include/header.inc.php'; ?>
         
         <main class="container">
-            <div class="panel panel-default ">
-                <div class='panel-heading'>
+            <div class="panel panel-default body">
+                <div class='panel-heading head'>
                     <h2>About Us</h2>
-                    <p>This site was created as an assignment by Maxwell Tyson & Austin Arndt. It was the second assignment for COMP 3512 at Mount Royal University taught by Randy Connolly.</p>
+                    <p>This site was created as an assignment by Maxwell Tyson & Austin Arndt. 
+                        It was the second assignment for COMP 3512 at Mount Royal University taught by Randy Connolly. Max handeled the general desing of the site as well as the login functionality and the searching/filtering JavaScript .
+                        Austin handled the gateway functions and favorites. However, most work was done as a collaberative effort. </p>
                 </div>
                 <div class='panel-body inverse-color'>
                     <h4>External Resources Used</h4>

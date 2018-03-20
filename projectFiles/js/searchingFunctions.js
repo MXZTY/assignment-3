@@ -12,17 +12,18 @@ function titleSearch(e){
     filterImages(e);    
 }
 
-// This JQuery call will get the value of the title input element
+// This will get the value of the title input element
 // it will then focus the title element and when the focus happens, titleSearch is called with stored value.
-$(title).val(title.value).focus(titleSearch(title));
-
+if(title != null || title != undefined ){
+    document.querySelector('#title').focus(titleSearch(title));
+}
 
 // add the event listener of KeyUp on the title input element so when the user inputs a character, 
 // the list will be refined without needing to hit tab or the enter key. 
 title.addEventListener('keyup', function (e){
     filterImages(e);
     var panelhead = document.getElementById('query-string');
-    panelhead.innerHTML = 'Images the match the title: ' + e.target.value;
+    panelhead.innerHTML = 'Images that match the title: ' + e.target.value;
     continent.value = 0;
     country.value = 0;
     city.value = 0;
@@ -30,7 +31,7 @@ title.addEventListener('keyup', function (e){
 
 // This will handle any incoming select values passed in through the query string. 
 // The panel of popular, and countries will set the query string value and this will parse the query strings parameters
- var querystring = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+var querystring = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     
     if( querystring != undefined || querystring != null ){
         for(var i = 0; i < querystring.length; i++) {
@@ -51,7 +52,7 @@ document.querySelector('#searchingForm').addEventListener('change', function(e){
     var value = e.target;
     var panelhead = document.getElementById('query-string');
     console.log(value.options[value.selectedIndex].text);
-    panelhead.innerHTML = 'Images Matching ' + value.getAttribute('id').charAt(0).toUpperCase() + value.getAttribute('id').split(1) + ": " + value.options[value.selectedIndex].text;
+    panelhead.innerHTML = 'Images matching ' + value.getAttribute('id') + ": " + value.options[value.selectedIndex].text;
     
     //just added this here... checks the id to see if the country was e or ... and then sets the other values back to default
     if(value.value == 0){

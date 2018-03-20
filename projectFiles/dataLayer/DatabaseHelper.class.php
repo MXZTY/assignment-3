@@ -16,7 +16,7 @@ class DatabaseHelper {
        $pdo = new PDO($connString,$user,$password);
        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        return $pdo;       
-   }    
+   }
 
 	// run an SQL query and return the cursor to the database
    public static function runQuery($connection, $sql, $parameters=array()) {

@@ -16,8 +16,7 @@
         <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
         
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/assignment-css.css" />  
@@ -28,7 +27,7 @@
         
         <main class="container">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4>Countries with Images</h4></div>
+                <div class="panel-heading head">Countries with Images</div>
                 <div class="panel-body inverse-color">
                     <?php
                         //Get all countries with images, display the links to those countries

@@ -56,4 +56,25 @@
     function outputFavoritesJavaScript(){
         echo '<script type="text/javascript" language="javascript" src="js/added.js"></script>';
     }
+    
+    /*---------------Favorites Functions------------------*/
+    
+    function getSessionFavorite(){
+        if(!isset($_SESSION['favorite'])) {
+            $_SESSION['favorite'] = serialize(new FavoriteList());
+        }
+        return unserialize($_SESSION['favorite']);
+    }
+    
+
+    function saveFavorite($post, $id, $path, $title){
+        $favorites = getSessionFavorite();
+        if ($post == 'post') {
+            $favorites->addFavPost($id, $path, $title);
+        } else {
+            $favorites->addFavImage($id, $path, $title);
+        }
+        
+        $_SESSION['favorite'] = serialize($favorites);
+    }
 ?>

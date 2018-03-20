@@ -19,7 +19,8 @@
     $favorites->addFavImage($id, $image['Path'], $image['Title']);
     setcookie('temp', serialize($favorites), 0, "/", 'comp3512-assignment2-aarnd649.c9users.io');
     
-    if(isset($_GET['added']) && !empty($_GET['added'])) {
+    if(isset($_GET['added']) || !empty($_GET['added'])){
+        saveFavorite('image', $id, $image['Path'], $image['Title']);
         outputFavoritesJavaScript();
     }
 ?>
@@ -30,9 +31,8 @@
     <meta charset="utf-8">
     <title>Assignment 2</title>
 
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/assignment-css.css" />
@@ -63,13 +63,15 @@
                     </div>
 
                     <div class="col-md-4">                                                
-                        <h2><?php echo $image['Title'];?></h2>
+                        
 
+                        
                         <div class="panel panel-default">
-                            <div class="panel-body">
-                                <ul class="details-list">
-                                    <li>By: <a href="single-user.php?id=<?php echo $image['UserId'];?>"> <?php echo $image['FirstName'] ." ". $image['LastName'];?></a></li>
-                                    <li>Country: <a href="single-country.php?country=<?php echo $image['ISO'];?>"><?php echo $image['CountryName'];?></a></li>
+                        <div class='panel-heading head'><?php echo $image['Title'];?></div>    
+                            <div class="panel-body inverse-color">
+                                <ul class="details-list noListStyle">
+                                    <li>By: <a class='gold' href="single-user.php?id=<?php echo $image['UserId'];?>"> <?php echo $image['FirstName'] ." ". $image['LastName'];?></a></li>
+                                    <li>Country: <a class='gold' href="single-country.php?country=<?php echo $image['ISO'];?>"><?php echo $image['CountryName'];?></a></li>
                                     <li>City: <?php echo $image['AsciiName'];?></li>
                                 </ul>
                             </div>
@@ -81,7 +83,7 @@
                         <!-- Glyph Buttons -->
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                                <a href='save-favorite.php?type=image&id=<?php echo $id;?>'><button type='button' class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
+                                <a href='single-image.php?added=true&id=<?php echo $id;?>'><button type='button' class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>

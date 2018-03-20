@@ -21,8 +21,7 @@
         <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -55,7 +54,7 @@
             
             <!--Image panel-->
             <div class="panel panel-default col-md-4 side-panel center-text">
-                <div class="panel-heading">Images from <?php echo $cRow['CountryName'];?></div>
+                <div class="panel-heading"><h4>Images from <?php echo $cRow['CountryName'];?></h4></div>
                 <div class="panel-body">
                     <?php foreach($images as $row){
                             outputSmallImage($row['Path'], $row['Title'], $row['ImageID']);

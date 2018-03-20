@@ -1,6 +1,4 @@
 <?php
-
-
     include_once("include/config.inc.php");
     include("general.php");
     
@@ -10,13 +8,11 @@
         $countryDB = new CountryGateway($connection);
         $imageDB = new ImageGateway($connection);
         $imageResult = $imageDB->getAll();
-    if(!isset($_GET['title']) || empty($_GET['title'])){
+      if(!isset($_GET['title']) || empty($_GET['title'])){
         $_GET['title'] = '';
-    }
+      }
       
-    }
-    
-    catch (PDOException $e) {}
+    }catch (PDOException $e) {}
     
 ?>
 
@@ -28,8 +24,7 @@
     <title>Assignment 2</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/captions.css" />
@@ -43,7 +38,7 @@
     <!-- Page Content -->
     <main class="container">
         <div class="panel panel-default">
-          <div class="panel-body inverse-color">
+          <div class="panel-heading inverse-color">
             <form action="browse-images.php" method="get" id="searchingForm" class="form-horizontal">
               <div class="form-inline">
               Filters:      |
@@ -52,9 +47,6 @@
               <select name="continent" class="form-control" id='continent'>
                 <option value="0">Select Continent</option>
                 <?php
-                  if(isset($_GET['continent']) || !empty($_GET['continent'])){
-                    // function to search continent from aside panel. 
-                  }
                   $continents = $continentDB->getContinents();
                   foreach($continents as $row) {
                     outputList($row['ContinentCode'], $row['ContinentName']);
@@ -66,9 +58,6 @@
               <select name="country" class="form-control" id='country'>
                 <option value="0">Select Country</option>
                 <?php
-                if(isset($_GET['country']) || !empty($_GET['country'])){
-                    // function to search continent from aside panel. 
-                  }
                   $countries = $countryDB->getCountries();
                   foreach($countries as $row) {
                     outputList($row['ISO'], $row['CountryName']);
@@ -80,9 +69,6 @@
               <select name="city" class="form-control" id='city'>
                 <option value="0">Select City</option>
                 <?php
-                if(isset($_GET['city']) || !empty($_GET['city'])){
-                    // function to search continent from aside panel. 
-                  }
                    $cities = $cityDB->getCities();
                   foreach($cities as $row) {
                     outputList($row['CityCode'], $row['AsciiName']);
@@ -100,18 +86,17 @@
                                     
 
       <div class="panel panel-default">
-        <div class="panel-heading" id='query-string'>All Images</div>
-        <div class="panel-body inverse-color">
-		      <ul class="flex-container">
+        <div class="panel-heading head" id='query-string'>All Images</div>
+        <div class="panel-body inverse-color col-md-12 image-panel">
+		      <ul class="flex-container noListStyle">
 		        <?php 
 		        foreach($imageResult as $imgRow){ ?>
 		          <li class='filteredImages' title="<?php echo $imgRow["Title"];?>" continent="<?php echo $imgRow["ContinentCode"];?>" country="<?php echo $imgRow["CountryCodeISO"];?>" city="<?php echo $imgRow["CityCode"];?>">
                 <a href="single-image.php?id=<?php echo $imgRow["ImageID"];?>" class="img-responsive">
-                <img src="images/square-medium/<?php echo $imgRow["Path"];?>" alt="<?php echo $imgRow["Title"];?>"></img>
+                <img class="single-image"src="images/square-medium/<?php echo $imgRow["Path"];?>" alt="<?php echo $imgRow["Title"];?>"></img>
                     <div class="caption invisible">
-                       <div class="hover"></div>
                          <div class="caption-text">
-                              <p><?php echo $imgRow["Title"];?></p>
+                              <div class="invisible"><?php echo $imgRow["Title"];?></div>
                           </div>
                     </div>
                 </a>

@@ -1,3 +1,12 @@
+body, .body{
+    background-color: gainsboro !important;
+    font-family: 'Simonetta', cursive !important;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Courgette', cursive !important;
+}
+
 .foot {
     text-align: center !important;
     background-color: rgba(50, 52, 51, 0.95 ) ;
@@ -50,10 +59,30 @@ img .center, .center {
 }
 .panel {
     border: none !important;
+    background-color: transparent !important;
 }
 
-.panel-heading, .panel-body{
-    border-radius: 25px !important;
+.head {
+    border-radius: 25px 25px 0px 0px!important;
+    box-shadow: 5px 5px 5px grey;
+    border: none !important;
+    border-color: transparent !important; 
+}
+
+.panel .panel-heading {
+    border-radius: 25px 25px 25px 25px;
+    box-shadow: 5px 5px 5px grey;
+    border: none !important;
+    border-color: transparent !important; 
+
+}
+
+.panel-heading {
+    font-size: 16px;
+}
+
+.panel-body{
+    border-radius: 0px 0px 25px 25px!important;
     box-shadow: 5px 5px 5px grey;
 }
 
@@ -88,12 +117,20 @@ img .center, .center {
 }
 
 .navbar, .foot{
-    max-width: 80% !important;
+    max-width: inherit;
     box-shadow: 5px 5px 5px grey;
 }
 
+.red{
+    color: red;
+}
+
+.noListStyle {
+    list-style: none !important;
+    padding-left: 0px;
+}
+
 .btn-lg:hover, .btn:hover, .resourceLink{
-    
     -webkit-transform: scale(1.15) perspective(1px);
     -moz-transform: scale(1.15) perspective(1px);
     -o-transform: scale(1.15) perspective(1px);
@@ -104,11 +141,13 @@ img .center, .center {
     -o-transition: 0.1s ease-in-out;
     transition: 0.1s ease-in-out;
 }
-body {
-    background-color: gainsboro !important;
-}
+
 .side-panel, .side-panel .panel-body, .side-panel .list-group{
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
+}
+
+.image-panel{
+    padding-left: 40px;
 }

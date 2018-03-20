@@ -19,8 +19,7 @@
         <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -36,13 +35,13 @@
             <h2>Favorites</h2>
               <!--Favorite Posts-->
             <div class="panel panel-default col-md-6">
-                <div class="panel-heading">Favorite Posts <a href="unfavorite.php?type=post"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
-                <div class="panel-body flex-container container-fluid">
+                <div class="panel-heading head">Favorite Posts <a href="unfavorite.php?type=post"><span class="btn-warning glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                <div class="panel-body inverse-color">
                     <?php foreach($posts as $key => $post){ ?>
                         <div class="col-md-4">
                             <?php outputLink("single-post.php?id=$key", generateImage("square-small", $post[0], $post[1], 'img-thumbnail'), ""); ?>
                             
-                            <a href="unfavorite.php?type=post&id=<?php echo $key?>" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                            <a href="unfavorite.php?type=post&id=<?php echo $key?>" class="btn btn-warning"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             
                             <p><?php echo $post[1];?></p>
                             
@@ -56,13 +55,13 @@
             
             <!--Favorite Image-->
             <div class="panel panel-default col-md-6">
-                <div class="panel-heading"> Favorite Images <a href="unfavorite.php?type=img"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
-                <div class="panel-body flex-container container-fluid">
+                <div class="panel-heading head"> Favorite Images <a href="unfavorite.php?type=img"><span class="btn-warning glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                <div class="panel-body inverse-color">
                     <?php foreach($images as $key => $image) { ?>
                     <div class="col-md-4">
                         <?php outputLink("single-image.php?id=$key", generateImage("square-small", $image[0], $image[1], 'img-thumbnail'), ""); ?>
                         
-                        <a href="unfavorite.php?type=image&id=<?php echo $key?>" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <a href="unfavorite.php?type=image&id=<?php echo $key?>" class="btn btn-warning"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                         <p class=""><?php echo $image[1];?></p>
                         </div>
                     <?php }?>

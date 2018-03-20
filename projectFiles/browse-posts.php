@@ -22,8 +22,7 @@
     <title>Assignment 2</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/assignment-css.css" />
@@ -71,7 +70,7 @@
                                         <span class='pull-right'> <?php echo '<strong>'.date_format(date_create($row['PostTime']), "d-M-Y"). '</strong>' ?> </span>
                                         </div> 
                                             <p> <?php echo substr($row['Message'], 0, 180) . '...'; ?> </p> 
-                                            <p class='pull-right'> <?php outputLink("single-post.php?id=" .$row['PostID'], 'Read more', 'btn btn-primary btn-sm'); ?> </p> 
+                                            <p class='pull-right'><a href='single-post.php?id=<?php echo $row['PostID'] ?>' class='btn btn-warning'>Read more</a></p> 
                                 </div> <!-- End Content Pane -->
                             </div>   <!-- /.row --> <hr>
                         <?php  } //End loop ?>

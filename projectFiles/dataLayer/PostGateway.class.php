@@ -42,13 +42,13 @@
         }
         
         public function getAllPostData() { 
-            $sql = $this->getDetailedSelect() . $this->innerJoin() . " GROUP BY ". $this->getKeyField() ;
+            $sql = $this->getDetailedSelect() . $this->innerJoin() . " GROUP BY ". $this->getKeyField() . " ORDER BY PostTime DESC" ;
             $statement = DatabaseHelper::runQuery($this->connection, $sql, null);
             return $statement->fetchAll();
         }
         
         public function getSinglePostData($key) { 
-            $sql = $this->getDetailedSelect() . $this->innerJoin(). " WHERE " .$this->getKeyField() ." = :id GROUP BY ". $this->getKeyField();
+            $sql = $this->getDetailedSelect() . $this->innerJoin(). " WHERE " .$this->getKeyField() ." = :id GROUP BY ". $this->getKeyField() . " ORDER BY PostTime DESC" ;
             $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $key));
             return $statement->fetch();
         }

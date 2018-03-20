@@ -6,19 +6,19 @@
     }
     
     function outputPanel($label, $value, $page) {
-        echo "<a href='browse-images.php?$page=$value'>$label</a>";
+        echo "<a class='gold' href='browse-images.php?$page=$value'>$label</a>";
     }
     
 ?>
 
 <aside class="col-md-2">
-    <div class="panel panel-default side-panel">
-        <div class="panel-heading">Continents</div>
-        <div class='panel-body'>
-        <ul class='list-group'>
+    <div class="panel panel-default">
+        <div class="panel-heading head">Continents</div>
+        <div class='panel-body inverse-color'>
+        <ul class='noListStyle inverse-color'>
             <?php $continents = $continentDB->getContinents();
                   foreach($continents as $row) { ?>
-                <li class='list-group-item gold'>
+                <li class='inverse-color'>
                     <?php outputPanel($row['ContinentName'], $row['ContinentCode'], "continent"); ?>
                 </li>
             <?php }?>
@@ -27,13 +27,13 @@
     </div>
     <!-- end continents panel -->
 
-    <div class="panel panel-default side-panel">
-        <div class="panel-heading">Popular</div>
-        <div class='panel-body'>
-        <ul class="list-group">
+    <div class="panel panel-default">
+        <div class="panel-heading head">Popular</div>
+        <div class='panel-body inverse-color'>
+        <ul class="noListStyle inverse-color">
             <?php $countries = $countryDB->getCountries();
                   foreach($countries as $row) { ?>
-            <li class="list-group-item gold">
+            <li class="inverse-color">
                 <?php outputPanel($row['CountryName'], $row['ISO'], "country"); ?>
             </li>
             <?php }?>

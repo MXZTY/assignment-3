@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("include/config.inc.php");
     include("general.php");
     
@@ -13,13 +14,11 @@
     }
     catch(PDOException $e) {}
     
-    $favorites = new FavoriteList();
-    $favorites->addFavPost($id, $uRow['Path'], $uRow['Title']);
-    setcookie('temp', serialize($favorites), 0, "/", 'comp3512-assignment2-aarnd649.c9users.io');
-    
-    if(isset($_GET['added']) && !empty($_GET['added'])) {
+    if(isset($_GET['added']) || !empty($_GET['added'])){
+        saveFavorite('post', $id, $uRow['Path'], $uRow['Title']);
         outputFavoritesJavaScript();
     }
+
 ?>
 
 <html>
@@ -28,8 +27,7 @@
         <title>Assigment 2</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Simonetta" rel="stylesheet">
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -51,22 +49,23 @@
             <section class='panel col-md-5'>
                 <div>
                     <h1><?php echo $uRow['Title']; ?></h1>
-                    <p>By:<a href="single-user.php?id=<?php echo $uRow['UserID']?>"><?php echo ' '.$uRow['FirstName'] . " " . $uRow['LastName'];?></a></p>
-                    <p><?php echo $uRow['Message']?></p>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <a href='save-favorite.php?type=post&id=<?php echo $id;?>'><button type='button' class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
+                    <p>By:<strong><a class='dark-gold' href="single-user.php?id=<?php echo $uRow['UserID']?>"><?php echo ' '.$uRow['FirstName'] . " " . $uRow['LastName'];?></a></strong></p>
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <a href='single-post.php?added=true&id=<?php echo $id;?>'><button type='button' class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
                     </div>
                 </div>
                 <!--This div will become the notification for the item being added to favorites-->
                 <div id="added-notice"></div>
+                    <p><?php echo $uRow['Message']?></p>
+                </div>
+               
             </section>
             
             <!--Image panel-->
-            <div class="panel panel-info col-md-12">
-                <div class="panel-heading">Images from <?php echo $uRow['Title'];?></div>
-                <div class="panel-body">
+            <div class="panel-default col-md-8 col-md-offset-2 center-text">
+                <div class="panel-heading head"><h4>Images from <?php echo $uRow['Title'];?></h4></div>
+                <div class="panel-body inverse-color">
                     <?php
                         $images = $postDB->getRelatedImages($uRow['PostID']);
                         foreach($images as $image){
@@ -87,8 +86,4 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     </body>
-    
-
-        
-
 </html>
