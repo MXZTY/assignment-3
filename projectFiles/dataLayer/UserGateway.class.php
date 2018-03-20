@@ -1,4 +1,5 @@
 <?php
+// this class is used when querying the user tables in the database. 
     class UserGateway extends AbstractGateway { 
         public function __construct($connect)    {
                 parent::__construct($connect);
@@ -17,10 +18,12 @@
                     FROM UsersLogin";
         }
         
+        /* get the order fields to order by */
         protected function getOrderFields()    {
             return 'FirstName, LastName';
         }
         
+        /* get the key field of the user table.*/
         protected function getKeyField() {
             return "UserID"; 
         }

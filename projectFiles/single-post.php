@@ -14,6 +14,7 @@
     }
     catch(PDOException $e) {}
     
+    //If the favorites button has been hit save the file and display the favorites message
     if(isset($_GET['added']) || !empty($_GET['added'])){
         saveFavorite('post', $id, $uRow['Path'], $uRow['Title']);
         outputFavoritesJavaScript();

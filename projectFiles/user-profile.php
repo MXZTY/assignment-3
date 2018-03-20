@@ -41,24 +41,24 @@
             <?php $uRow = $userDB->getByKey($id);?>
             
               <!--Country Details-->
-            <section class='panel panel-default profileInfo'>
-                    <h1 class='center-text'><?php echo "Hello, " . $uRow['FirstName']; echo " ".$uRow['LastName'];?></h1></br></br>
+            <section class='panel panel-default profileInfo center-text col-md-12'>
+                    <h1 class='center-text'><?php echo "Hello, " . $uRow['FirstName']; echo " ".$uRow['LastName'];?></h1>
 
                 <div class='col-md-12'>
                     
                     <h3 class=center-text>your information:</h3> 
-                    <h4 id='inputLabel' class='col-md-5'>Address: </h4><h4 class='col-md-6' name="Address"><?php echo $uRow['Address']?></h4>
-                    <h4 id='inputLabel' class='col-md-5'>Location: </h4><h4 class='col-md-6' name="Location"><?php echo $uRow['City'] .", " .$uRow['Postal'] .", " . $uRow['Country'] ?></h4>
-                    <h4 id='inputLabel' class='col-md-5'>Phone Number:  </h4><h4 class='col-md-6' name="Phone"><?php echo $uRow['Phone'] ?></h4>
-                    <h4 id='inputLabel' class='col-md-5'>User Name: </h4><h4 class='col-md-6' name="UserName"><?php echo $uRow['Email']?></h4>
+                    <h4 id='inputLabel' class='col-md-5 text-right'>Address: </h4><h4 class='col-md-6' name="Address"><?php echo $uRow['Address']?></h4>
+                    <h4 id='inputLabel' class='col-md-5 text-right'>Location: </h4><h4 class='col-md-6' name="Location"><?php echo $uRow['City'] .", " .$uRow['Postal'] .", " . $uRow['Country'] ?></h4>
+                    <h4 id='inputLabel' class='col-md-5 text-right'>Phone Number:  </h4><h4 class='col-md-6' name="Phone"><?php echo $uRow['Phone'] ?></h4>
+                    <h4 id='inputLabel' class='col-md-5 text-right'>User Name: </h4><h4 class='col-md-6' name="UserName"><?php echo $uRow['Email']?></h4>
  
                 </div>
             </section>
             
             <!--Image panel-->
-            <section class="panel panel-default container-fluid col-md-7 userImages">
-                <div class="panel-heading user-panel"> Your Images: </div>
-                <div class="panel-body">
+            <section class="panel panel-default container center-text col-md-6 col-md-offset-3">
+                <div class="panel-heading head user-panel"> Your Images: </div>
+                <div class="panel-body inverse-color image-panel">
 
                     <?php foreach($images as $row){
                         outputMediumImage($row['Path'], $row['Title'], $row['ImageID']);
@@ -69,8 +69,6 @@
             <div id="hover"></div>
         </main>
         
-        
-        
         <?php include 'include/footer.inc.php'; ?> 
         
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -78,7 +76,4 @@
 
     </body>
     
-
-        
-
 </html>

@@ -45,7 +45,7 @@
                     <p>Currence Name: <b><?php echo $cRow['CurrencyName']?></b> </p>
                     <p><?php echo $cRow['CountryDescription']?></p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 pad-bottom">
                     <?php echo getStaticMap($cRow['CountryName'], $cRow['Area'])?>
                 </div>
             </div>

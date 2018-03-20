@@ -58,7 +58,7 @@
     }
     
     /*---------------Favorites Functions------------------*/
-    
+    /*return a $favorites object that is stored in SESSION*/
     function getSessionFavorite(){
         if(!isset($_SESSION['favorite'])) {
             $_SESSION['favorite'] = serialize(new FavoriteList());
@@ -66,7 +66,8 @@
         return unserialize($_SESSION['favorite']);
     }
     
-
+    /*Takes in when the post came from (Image or post), the id, path, and title of that object
+        and saves it to SESSION*/
     function saveFavorite($post, $id, $path, $title){
         $favorites = getSessionFavorite();
         if ($post == 'post') {
@@ -74,7 +75,6 @@
         } else {
             $favorites->addFavImage($id, $path, $title);
         }
-        
         $_SESSION['favorite'] = serialize($favorites);
     }
 ?>

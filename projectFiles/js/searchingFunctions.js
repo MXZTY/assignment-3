@@ -47,6 +47,8 @@ var querystring = window.location.href.slice(window.location.href.indexOf('?') +
         }
     }
 
+//this function will set an event listener for a change on the form. when the form is changed, 
+// the value of the selected element is passed in to filter images. 
 document.querySelector('#searchingForm').addEventListener('change', function(e){
     filterImages(e);
     var value = e.target;
@@ -54,32 +56,37 @@ document.querySelector('#searchingForm').addEventListener('change', function(e){
     console.log(value.options[value.selectedIndex].text);
     panelhead.innerHTML = 'Images matching ' + value.getAttribute('id') + ": " + value.options[value.selectedIndex].text;
     
-    //just added this here... checks the id to see if the country was e or ... and then sets the other values back to default
+    //checks the value to see if it is set to 0 and then sets the heading text to all images if so. 
     if(value.value == 0){
         panelhead.innerHTML = 'All Images'
     } else if(value.getAttribute('id').toLowerCase() == 'country'){
+        // if it is country then set the others to their defaults. 
         continent.value = 0;
         title.value = '';
         city.value = 0;
         
     } else if (value.getAttribute('id').toLowerCase() == 'continent'){
+        // if it is continent then set the others to their defaults. 
         country.value = 0;
         title.value = '';
         city.value = 0
     } else if (value.getAttribute('id').toLowerCase() == 'city'){
+        // if it is city then set the others to their defaults. 
         continent.value = 0;
         title.value = '';
         country.value = 0
     }
 });
 
-
+// this funciton will filter the images based on the selection passed in. 
+// it will take in either the select elements, or the input element for searching. 
 function filterImages(e){
     let value = e.target;
     if(value == undefined){
         value = e;
     }
     var imgs = document.getElementsByClassName('filteredImages');
+        //iterate and evaluate if the image matches query. 
         for(var i =0; i<imgs.length; i++){
          if(imgs[i].getAttribute(value.getAttribute('id')).toLowerCase().includes(value.value.toLowerCase()) || value.value == 0) {
              imgs[i].style.display = "block";

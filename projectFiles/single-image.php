@@ -14,11 +14,7 @@
     }
     catch (PDOException $e) {}
     
-    /*create a temporary cookie to be used if the user clicks on the favorite button to transfer info to the session page*/
-    $favorites = new FavoriteList();
-    $favorites->addFavImage($id, $image['Path'], $image['Title']);
-    setcookie('temp', serialize($favorites), 0, "/", 'comp3512-assignment2-aarnd649.c9users.io');
-    
+    //If the favorites button has been hit save the file and display the favorites message
     if(isset($_GET['added']) || !empty($_GET['added'])){
         saveFavorite('image', $id, $image['Path'], $image['Title']);
         outputFavoritesJavaScript();
@@ -39,7 +35,7 @@
     
    <!--Script for the dynamic google map-->
    <script type="text/javascript"> var directions = {lat: <?php echo $image['Latitude']; ?>, lng: <?php echo $image['Longitude']; ?>};</script>
-                            <script type='text/javascript' language="javascript" src='js/map.js'></script>
+   <script type='text/javascript' language="javascript" src='js/map.js'></script>
 
 </head>
 
@@ -81,7 +77,7 @@
                        
                         
                         <!-- Glyph Buttons -->
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group btn-group-justified pad-bottom" role="group" aria-label="...">
                             <div class="btn-group" role="group">
                                 <a href='single-image.php?added=true&id=<?php echo $id;?>'><button type='button' class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
                             </div>

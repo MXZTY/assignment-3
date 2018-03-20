@@ -5,6 +5,7 @@
                 parent::__construct($connect);
         }
         
+        //
         protected function getSelectStatement() {    
             return "SELECT ISO, CountryName,  Capital, Countries.CityCode, Area, 
                         Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName,

@@ -151,3 +151,15 @@ img .center, .center {
 .image-panel{
     padding-left: 40px;
 }
+
+.pad-bottom {
+    padding-bottom: 20px !important;
+}
+
+.text-right {
+     text-align: right;   
+}
+
+.text-left{
+    text-align: left;
+}
