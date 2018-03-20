@@ -47,10 +47,10 @@
                 <div class='col-md-12'>
                     
                     <h3 class=center-text>your information:</h3> 
-                    <h4 id='inputLabel' class='col-md-5 text-right'>Address: </h4><h4 class='col-md-6' name="Address"><?php echo $uRow['Address']?></h4>
-                    <h4 id='inputLabel' class='col-md-5 text-right'>Location: </h4><h4 class='col-md-6' name="Location"><?php echo $uRow['City'] .", " .$uRow['Postal'] .", " . $uRow['Country'] ?></h4>
-                    <h4 id='inputLabel' class='col-md-5 text-right'>Phone Number:  </h4><h4 class='col-md-6' name="Phone"><?php echo $uRow['Phone'] ?></h4>
-                    <h4 id='inputLabel' class='col-md-5 text-right'>User Name: </h4><h4 class='col-md-6' name="UserName"><?php echo $uRow['Email']?></h4>
+                    <h4 id='inputLabel' class='col-md-6 text-right'>Address: </h4><h4 class='col-md-6 text-left' name="Address"><?php echo $uRow['Address']?></h4>
+                    <h4 id='inputLabel' class='col-md-6 text-right'>Location: </h4><h4 class='col-md-6 text-left' name="Location"><?php echo $uRow['City'] .", " .$uRow['Postal'] .", " . $uRow['Country'] ?></h4>
+                    <h4 id='inputLabel' class='col-md-6 text-right'>Phone Number:  </h4><h4 class='col-md-6 text-left' name="Phone"><?php echo $uRow['Phone'] ?></h4>
+                    <h4 id='inputLabel' class='col-md-6 text-right'>User Name: </h4><h4 class='col-md-6 text-left' name="UserName"><?php echo $uRow['Email']?></h4>
  
                 </div>
             </section>
