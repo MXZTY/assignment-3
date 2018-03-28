@@ -23,6 +23,7 @@
         
         <link rel="stylesheet" href="css/assignment-css.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 
     </head>
@@ -35,7 +36,12 @@
             <h2>Favorites</h2>
               <!--Favorite Posts-->
             <div class="panel panel-default col-md-6">
-                <div class="panel-heading head">Favorite Posts <a href="unfavorite.php?type=post"><span class="btn-warning glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                <div class="panel-heading head">
+                    Favorite Posts 
+                    <a href="unfavorite.php?type=post"><span class="btn btn-warning glyphicon glyphicon-remove" aria-hidden="true"></span></a> 
+                    <button class='btn btn-warning glyphicon glyphicon-print' id='print-button' aria-hidden='true' data-toggle="modal" data-target="#printModal"></button>
+                
+                </div>
                 <div class="panel-body inverse-color">
                     <?php foreach($posts as $key => $post){ ?>
                         <div class="col-md-4">
@@ -55,7 +61,11 @@
             
             <!--Favorite Image-->
             <div class="panel panel-default col-md-6">
-                <div class="panel-heading head"> Favorite Images <a href="unfavorite.php?type=img"><span class="btn-warning glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                <div class="panel-heading head">
+                     Favorite Images 
+                     <a href="unfavorite.php?type=img"><span class=" btn btn-warning glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                    <button class='btn btn-warning glyphicon glyphicon-print' id='print-button' aria-hidden='true' data-toggle="modal" data-target="#printModal"></button> 
+                </div>
                 <div class="panel-body inverse-color">
                     <?php foreach($images as $key => $image) { ?>
                     <div class="col-md-4">
@@ -80,5 +90,5 @@
 
     </body>
     
-
+    <script type="text/javascript" language="javascript" src="js/printFunctions.js"></script>   
 </html>
