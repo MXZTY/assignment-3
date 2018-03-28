@@ -5,7 +5,7 @@
 
     // define the database connection information
     define('DBNAME', 'travel');
-    define('DBUSER', 'aarnd649');
+    define('DBUSER', 'mtyso088');
     define('DBPASS', '');
     define('DBHOST', '');
     define('DBCONNSTRING','mysql:dbname=travel;charset=utf8mb4;');
