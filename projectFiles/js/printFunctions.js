@@ -1,4 +1,11 @@
 $(function(){
+    
+    
+    //  data-toggle="modal" data-target="#printModal"
+        $()
+    
+    
+    
         var url = `print-services.php`;
         $.get(url).done(function(data){
            $('.size').each( function(index, item) {
@@ -19,10 +26,10 @@ $(function(){
            });
            
            $('#standard').text(data.shipping[0].name);
-           console.log($('#standard'));
+
            $('#shipcost').text('$'+data.shipping[0].rules.none);
            $('#secondary').text(data.shipping[1].name);
-           console.log($('#secondary'));
+
            calulateTotal();
            
            
@@ -35,7 +42,7 @@ $(function(){
                } 
                calulateTotal();
                let shippingID = $('input[name=shipping]:checked').val();
-               updateShipping(data.shipping[shippingID], data.freeThresholds[shippingID], 10);
+               updateShipping(data.shipping[shippingID], data.freeThresholds[shippingID]);
                
                
                
@@ -94,10 +101,10 @@ $(function(){
             let grandTotal = Number(subTotal) + Number($('#shipcost').text().split('$')[1]);
             document.querySelector('#grandtotal').innerHTML =  '$' + grandTotal;
         }
-        function updateShipping(shipping, free, frames) {
+        function updateShipping(shipping, free) {
             let subTotal = $('#subtotal').text().split('$')[1];
             let shippingCost = 0;
-            
+            let frames = getFrames();
             if(Number(free.amount) <= Number(subTotal)) {
                 shippingCost = 0;
             } else if(frames == 0){
@@ -109,5 +116,15 @@ $(function(){
             }
             $('#shipcost').text('$'+shippingCost);
             setGrandTotal(subTotal);
+        }
+        function getFrames(){
+            let frames = Number(0);
+            $('.frame').each( function(index, item) {
+              if($(this).val() != 0) {
+                  let quant = $(this).attr('id').replace('frame', 'quantity');
+                  frames += Number($('#'+quant).val());
+              }
+            });
+            return frames;
         }
 });

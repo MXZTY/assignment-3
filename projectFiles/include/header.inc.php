@@ -17,9 +17,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <ul class="nav navbar-nav navbar-right">    
-                        <li class='dropdown'>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span></a>
-                            <ul class="dropdown-menu">
+
                                 <?php 
                                 if(session_id() == '') {
                                      session_start();
@@ -33,8 +31,7 @@
                                 ?>
                                 <li><a href="user-profile.php"><span class="glyphicon glyphicon-user"> User-Profile</span></a></li>
                                 <li><a href="favorites.php"><span class="glyphicon glyphicon-star"> Favorites</span></a></li>
-                            </ul>
-                        <li>
+                        </ul>
                     </ul>  
                     
                     
@@ -52,11 +49,12 @@
                             </ul>
                         </li>
                     </ul>  
-                    <form action="browse-images.php" method='GET' class="navbar-form navbar-right" role="search">
+                    <form action="browse-images.php" method='GET' class="navbar-form navbar-left" role="search">
                         <div class="form-group">
+                            <button type="submit" class="btn btn-warning glyphicon glyphicon-search" id='title-main-submit'></button>
                             <input id='title-main' type="text" name="title" class="form-control" placeholder="Search">
                         </div>
-                        <button type="submit" class="btn btn-warning glyphicon glyphicon-search" id='title-main-submit'></button>
+                        
                     </form>
                 </div>
                 <!-- /.navbar-collapse -->

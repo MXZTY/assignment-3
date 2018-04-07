@@ -74,10 +74,13 @@
                 <div class="panel-heading head">
                      Favorite Images 
                      <a href="unfavorite.php?type=img"><span class=" btn btn-warning glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                    <button class='btn btn-warning glyphicon glyphicon-print' id='print-button' aria-hidden='true' data-toggle="modal" data-target="#printModal"></button> 
+                    <button class='btn btn-warning glyphicon glyphicon-print' id='print-button' aria-hidden='true'></button> 
                 </div>
                 <div class="panel-body inverse-color">
-                    <?php foreach($images as $key => $image) { ?>
+                    <?php
+                    foreach($images as $key => $image) { 
+                    
+                    ?>
                     <div class="col-md-4">
                         <?php outputLink("single-image.php?id=$key", generateImage("square-small", $image[0], $image[1], 'img-thumbnail'), ""); ?>
                         
