@@ -17,7 +17,7 @@
     //If the favorites button has been hit save the file and display the favorites message
     if(isset($_GET['added']) || !empty($_GET['added'])){
         saveFavorite('image', $id, $image['Path'], $image['Title']);
-        outputFavoritesJavaScript();
+        header("Location: favorites.php");
     }
 ?>
 <!DOCTYPE html>
@@ -91,9 +91,6 @@
                                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
                             </div>
                         </div><!-- end Glyph button-->
-                        
-                        <!--This div will become the notification for the item being added to favorites-->
-                        <div id="added-notice" class="invisible"></div>
 
                     </div>  <!-- end right-info column -->
                 </div>  <!-- end row -->

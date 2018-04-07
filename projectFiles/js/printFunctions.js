@@ -1,96 +1,113 @@
 $(function(){
-    
-    $(`#print-button`).on(`click`, getPrintDialogData)
-     function getPrintDialogData (e) {
         var url = `print-services.php`;
-        var data = [];
         $.get(url).done(function(data){
-            document.dialogData = data;
-            $(document).trigger(`buildDialog`, document.dialogData);
+           $('.size').each( function(index, item) {
+               makeOption(data.sizes, $(this));
+           });
+           
+            $('.paper').each(function(index, item) {
+               makeOption(data.stock, $(this));
+           });
+            $('.frame').each( function(index, item) {
+               makeOption(data.frame, $(this));
+           });
+           
+           $('.total').each( function(index, item){
+               var key = index + 1;
+               let totalCost = calculateRowTotal(key, data);
+               $(this).text("$"+totalCost);
+           });
+           
+           $('#standard').text(data.shipping[0].name);
+           console.log($('#standard'));
+           $('#shipcost').text('$'+data.shipping[0].rules.none);
+           $('#secondary').text(data.shipping[1].name);
+           console.log($('#secondary'));
+           calulateTotal();
+           
+           
+           $('#order-form').on('change', function(e){
+               if(e.target.tagName.toUpperCase() == "SELECT" || e.target.getAttribute('type').toUpperCase() == 'NUMBER') {
+                   let key = e.target.getAttribute('name').replace(e.target.className, '');
+                   let total = document.querySelector('#total'+key);
+                   let totalCost = calculateRowTotal(key, data);
+                   $(total).text("$"+ totalCost);
+               } 
+               calulateTotal();
+               let shippingID = $('input[name=shipping]:checked').val();
+               updateShipping(data.shipping[shippingID], data.freeThresholds[shippingID], 10);
+               
+               
+               
+           });
         }).fail(function(xhr, status, error){
-            alert(`Faild loading data! Status = ` + status + ` Error =` + error);
+            alert(`Failed loading data! Status = ` + status + ` Error =` + error);
         }).always(function(data){
                 
         });
-    };
-    
-    document.dialog = 
-    `<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        Print Favourites
-        <button type="button" class="btn btn-warning close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form class='form-horizontal' method='post' action='favorites.php'>
-        <table>
-            <tr id='labels'>
-                <td>Sizes</td>
-                <td>Paper</td>
-                <td>Frame</td>
-                <td>Quantity</td>
-                <td>Total</td>
-            </tr>
-            <tr id='content'>
-            </tr>
-            </br>
-             
-        </table>
-        </br>
-            <div class='container float-right' id='totals'>
-            
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Order</button>
-      </div>
-    </div>
-    </div>
-    </div>`;
-    $(`body`).append(document.dialog);
-    
-    
-    $(document).on(`buildDialog`, function(){
-         var shipping = document.dialogData[`shipping`];
-         var freeThresholds = document.dialogData[`freeThresholds`];
-         
-
-         $.each(document.dialogData, function(index, value){
-            if(index == `shipping`){
-                var input = $(`<input type='radio' name='shipping' value=`+value[0].name+`> `+value[0].name+` </input></br>`);
-                var input1 = $(`<input type='radio' name='shipping' value=`+value[1].name+`> `+value[1].name+` </input>`);
-                var td = $(`<td/>`).append($(input));
-                var td1 = $(`<td/>`).append($(input1));
-                $(`#totals`).append($(td), $(td1));
-                
-            } else if(index == `freeThresholds`){
-                //do nothing
-            }else {
-                var id = `#` + index;
-                var select = $(`<select id='`+id+`' name='`+index+`'>` + `</select>`);
-                var td = $(`<td/>`).append($(select));
-                td.appendTo(`#content`);
-                $.each(value, function(ind, val){
-                    if(value !== `shipping` && value !== `freeThresholds`){
-                        $(select).append($(`<option name='`+index+`' value='`+val.cost+`'>`+val.name+`</option>`));
-                    }
-                });
+        
+        function makeOption(info, a) {
+            for(let i = 0; i < info.length; i++) {
+                let item = $(`<option></option>`).attr('name', info[i].name).html(info[i].name);
+                item.attr('value', info[i].id);
+                  a.append(item);
+            }
+        }
+        
+        function calculateRowTotal(key, data) {
+            let sizeID = $( '#size' + key + ' option:selected').attr('value');
+            let paperID = $('#paper' + key + ' option:selected').attr('value');
+            let frameID = $('#frame' + key + ' option:selected').attr('value');
+            let quant = $('#quantity'+key).val();
+            if(quant === '' || quant === undefined) {
+                quant = 0;
             }
             
+            let paperCost = data.stock[paperID].large_cost;
+            if(sizeID < 2){
+                paperCost = data.stock[paperID].small_cost;
+            } 
             
+            return calculatePrice(data.sizes[sizeID].cost, paperCost, data.frame[frameID].costs[sizeID], quant);        
             
-        });
-        var quantInput = $(`<td><input class='inputsm' style='width:50px;' type='number' name='quantity' value=0></td>`);
-        var total = $(`<td><p>$100.90</p></td>`);
-        $(`#content`).append($(quantInput), $(total)); 
+        }
         
-         $(`#printModal`).attr(`aria-hidden`, `false`);
-         $(`#printModal`).toggle(`model`);
-         
-    });
-    
-    
-    
+        function calulateTotal(){
+            let totals = document.querySelectorAll('.total');
+            let sum = 0;
+            for(let i = 0; i < totals.length; i++){
+                let cost = totals[i].textContent.split('$')[1];
+                if(cost === '' || cost === undefined) {
+                    cost = 0;
+                }
+                sum += Number(cost);
+            }
+            document.querySelector('#subtotal').innerHTML = '$'+sum;
+            setGrandTotal(sum);
+        }
+        
+        function calculatePrice(size, paper, frame, quantity){
+            let itemPrice = size + paper + frame;
+            return itemPrice * quantity;
+        }
+        function setGrandTotal(subTotal) {
+            let grandTotal = Number(subTotal) + Number($('#shipcost').text().split('$')[1]);
+            document.querySelector('#grandtotal').innerHTML =  '$' + grandTotal;
+        }
+        function updateShipping(shipping, free, frames) {
+            let subTotal = $('#subtotal').text().split('$')[1];
+            let shippingCost = 0;
+            
+            if(Number(free.amount) <= Number(subTotal)) {
+                shippingCost = 0;
+            } else if(frames == 0){
+                shippingCost = shipping.rules.none;
+            } else if(frames >= 10){
+                shippingCost = shipping.rules.over10;
+            } else {
+                shippingCost = shipping.rules.under10;
+            }
+            $('#shipcost').text('$'+shippingCost);
+            setGrandTotal(subTotal);
+        }
 });
