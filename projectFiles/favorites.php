@@ -52,7 +52,7 @@
                     
                 
                 </div>
-                <div class="panel-body inverse-color">
+                <div class="panel-body inverse-color" id='favoritePostsPanel'>
                     <?php foreach($posts as $key => $post){ ?>
                         <div class="col-md-4">
                             <?php outputLink("single-post.php?id=$key", generateImage("square-small", $post[0], $post[1], 'img-thumbnail'), ""); ?>
@@ -76,7 +76,7 @@
                      <a href="unfavorite.php?type=img"><span class=" btn btn-warning glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                     <button class='btn btn-warning glyphicon glyphicon-print' id='print-button' aria-hidden='true'></button> 
                 </div>
-                <div class="panel-body inverse-color">
+                <div class="panel-body inverse-color" id='favoriteImagesPanel'>
                     <?php
                     foreach($images as $key => $image) { 
                     
