@@ -72,6 +72,13 @@ $(function(){
                // save the selected shipping method into shippingID and update shipping method. 
                let shippingID = $('input[name=shipping]:checked').val();
                updateShipping(data.shipping[shippingID], data.freeThresholds[shippingID]);
+               
+               if( Number($('#subtotal').text().split('$')[1]) == 0 ){
+                    $(`#orderButton`).attr('disabled', 'disabled');
+                } else {
+                    $(`#orderButton`).attr('disabled', false);
+                }
+               
            });
            
            // On failure when requesting data from print-services.php display the status and the error. 
@@ -123,7 +130,7 @@ $(function(){
             }
             
             //set the paper cost based on the selected value.
-            let paperCost = data.stock[paperID].large_cost;
+            let paperCost = data.stock[pape ].large_cost;
             if(sizeID < 2){
                 paperCost = data.stock[paperID].small_cost;
             } 
@@ -247,4 +254,5 @@ $(function(){
             //return the frames value. 
             return frames;
         }
+        
 });

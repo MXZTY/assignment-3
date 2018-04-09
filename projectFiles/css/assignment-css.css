@@ -171,3 +171,12 @@ header input{
     margin-left: 5px !important;
     width: 175px !important;
 }
+
+.orderTable .center-text {
+    padding-left: 40px;
+}
+
+.hover {
+    width: auto;
+    max-height: 60px !important;
+}

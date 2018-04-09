@@ -12,12 +12,14 @@
     $posts = $favorites->getPost();
     
     function outPutItem($pic, $id) {
-        $image = "<td> <img src=images/square-small/$pic> </td>";
-        $row = "<tr> $image <td><select id='size$id' class='size' name='size$id'></td> 
-                            <td><select id='paper$id' class='paper' name='paper$id'></select></td> 
-                            <td><select id='frame$id' class='frame' name='frame$id'></select></td>
-                            <td><input id='quantity$id' type='number' class='quantity' name='quantity$id' min='0' value='1'></td>
-                            <td><p id='total$id' class='total' name='total$id'>\$0</p></td>";
+        $image = "<td id='imageCol'> <input type='hidden' value=$pic name=image$id /><img id='image$id' class='single-image' src=images/square-small/$pic> </td>";
+        $row = "<tr id='lineItem'> $image 
+        
+        <td id='sizeCol'><select id='size$id' class='size' name='size$id'></td> 
+        <td id='paperCol'><select id='paper$id' class='paper' name='paper$id'></select></td> 
+        <td id='frameCol'><select id='frame$id' class='frame' name='frame$id'></select></td>
+        <td id='quantityCol'><input id='quantity$id' type='number' class='quantity' name='quantity$id' min='0' value='1'></td>
+        <td id='totalCol'><p id='total$id' class='total' name='total$id'>\$0</p></td>";
         return $row;
     }
     
@@ -89,73 +91,11 @@
                         </div>
                     <?php }?>
                 </div>
-            </div>  <!--End of Favorite Images-->
+                </div>  <!--End of Favorite Images-->
             
             </div>
-            
-            
-            <!--Modal Dialog-->
-            <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModal" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <!--Modal Content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn btn-warning close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></button>
-                            <h4 class="modal-title">Print Favourites</h4>
-                        </div>
-                        
-                        <div class="modal-body">
-                          <form id="order-form" class='form-horizontal' method='post' action='order.php'>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th></th> <!--Blank For image-->
-                                        <th>Sizes</th>
-                                        <th>Paper</th>
-                                        <th>Frame</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                </tr>
-                                </thead>
-                                <?php 
-                                    $index = 1;
-                                    foreach($images as $key => $image) {
-                                        echo outPutItem($image[0], $index);
-                                        $index++;
-                                    }
-                                ?>
-                                    
-                            </table>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class='col-md-2 col-md-offset-9'>Subtotal: </div>
-                                    <div id='subtotal' class='col-md-1'>$0</div>
-                                </div>
-                                <div class='row '>
-                                    <div class="col-md-4 col-md-offset-5">
-                                        <label  class="radio-inline"><input  type='radio' name='shipping' value='0' checked/><div id='standard'></div></label>
-                                        <label   class="radio-inline"> <input type='radio' name='shipping' value='1'/><div id='secondary'></div></label>
-                                    </div>
-                                    <div class='col-md-2'> Shipping:</div>
-                                    <div class='col-md-1'><p id='shipcost'>$0</p></div>
-                                </div>
-                                <div class="row ">
-                                    <div class='col-md-2 col-md-offset-9'>Grandtotal: </div>
-                                    <div id='grandtotal' class='col-md-1 '>$0</div>
-                                </div>
-                            </div>
-                            
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" form="order-form">Order</button>
-                        </div>
-                    </div> <!--End Modal Content-->
-                </div> 
-            </div> <!--End Modal-->
+            <?php include 'include/modal.php'; ?>
         </main>
-        
-        
         
         <?php include 'include/footer.inc.php'; ?>
         
@@ -164,5 +104,7 @@
 
     </body>
     
-    <script type="text/javascript" language="javascript" src="js/printFunctions.js"></script>   
+    <script type="text/javascript" language="javascript" src="js/printFunctions.js"></script>
+    <script type="text/javascript" language="javascript" src="js/hover.js"></script>
+
 </html>
