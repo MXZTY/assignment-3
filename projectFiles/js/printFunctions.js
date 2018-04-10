@@ -130,7 +130,7 @@ $(function(){
             }
             
             //set the paper cost based on the selected value.
-            let paperCost = data.stock[pape ].large_cost;
+            let paperCost = data.stock[paperID].large_cost;
             if(sizeID < 2){
                 paperCost = data.stock[paperID].small_cost;
             } 

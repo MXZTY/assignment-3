@@ -2,11 +2,6 @@
     session_start();
     include_once("include/config.inc.php");
     include("general.php");
-    
-    function outputLineItem(){
-        
-    }
-
 ?>
 
 <html>
@@ -28,10 +23,6 @@
         <main class="container-fluid" style='max-width:70%;'>
             <h1>Order Summary</h1>
         <table class="table orderTable">
-            <!--<thead>-->
-            <!--    <tr><th></th><th>Size</th><th>Paper</th><th>Frame</th><th>Quantity</th></tr>-->
-            <!--</thead>-->
-            
             <thead>
                 <tr><th class='center-text'>Image</th><th class='col-md-3'>Details</th><th class='col-md-3'>Quantity</th>
             </thead>
@@ -40,7 +31,7 @@
                 
                 <?php foreach ($_POST as $key => $value) {
                     if(strpos($key, 'shipping') !== false) {
-                        echo "<tr><td/><td class='text-center' id='shipping' value='$value'></td></tr>";
+                        echo "<tr><td/><td class='' id='shipping' value='$value'></td></tr>";
                     } else {
                         if (strpos($key, 'image') !== false) {
                             echo "<tr class='itemRow'><td class='col-md-5 center-text' id='$key' value='$value'><img width=250px height='auto' src=images/medium/$value></td><td class='col-md-3'><table class='detailsTable'>";
@@ -77,7 +68,7 @@
 
     </body>
     
-    <script type="text/javascript" language="javascript" src="js/printFunctions.js"></script>   
+    
     <script type="text/javascript" language="javascript" src="js/orderFunctions.js"></script>   
         
 
